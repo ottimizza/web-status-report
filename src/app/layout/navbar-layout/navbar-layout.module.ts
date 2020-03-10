@@ -15,10 +15,10 @@ import { BrandModule } from '@shared/components/brand/brand.module';
  * Exported Components
  * ********************************************************************************* */
 import { NavbarLayoutComponent } from './navbar-layout.component';
-import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { MatDialogModule } from '@angular/material/dialog';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [NavbarLayoutComponent],

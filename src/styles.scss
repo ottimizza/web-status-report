@@ -1,4 +1,4 @@
-@import "@angular/material/prebuilt-themes/deeppurple-amber.css";
+@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
 /* You can add global styles to this file, and also import other style files */
 /* Primary Styles */
 *,
@@ -63,7 +63,7 @@ body {
 }
 body {
   margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
 }
 
 .navbar-brand {
@@ -154,6 +154,10 @@ $full-sidebar-width: 240px;
 }
 
 @media (max-width: 767px) {
+  .main-wrapper {
+    width: 100vw;
+    margin: 0;
+  }
   .signin-as-navbar {
     display: none;
   }
@@ -174,6 +178,10 @@ $full-sidebar-width: 240px;
   }
 }
 @media (min-width: 768px) {
+  .main-wrapper {
+    width: calc(100vw - $compact-sidebar-width);
+    margin-left: $compact-sidebar-width;
+  }
   .mini-sidebar {
     .sidebar-toggler,
     .sidebar-overlay {
@@ -196,6 +204,10 @@ $full-sidebar-width: 240px;
   }
 }
 @media (min-width: 1170px) {
+  .main-wrapper {
+    width: calc(100vw - $full-sidebar-width);
+    margin-left: $full-sidebar-width;
+  }
   .mini-sidebar {
     .left-sidebar {
       width: $full-sidebar-width;
