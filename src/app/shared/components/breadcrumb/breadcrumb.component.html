@@ -13,7 +13,7 @@
           </a>
         </li>
         <li *ngIf="append" class="breadcrumb-item">
-          <a [routerLink]="[append.url, append.params]" class="">
+          <a [routerLink]="append.params ? [append.url, append.params] : [append.url]" class="">
             <span class="d-sm-inline-block d-md-none">
               <i v-bind:class="item.icon"></i>
             </span>
