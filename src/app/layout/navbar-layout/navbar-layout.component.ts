@@ -5,6 +5,7 @@ import { AuthenticationService } from '@app/authentication/authentication.servic
 import { StorageService } from '@app/services/storage.service';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
+import { MessagingService } from '@app/services/messaging.service';
 // import { OverlayContainer } from '@angular/cdk/overlay';
 
 // import { ThemeService } from '@app/service/theme.service';
@@ -26,7 +27,8 @@ export class NavbarLayoutComponent implements OnInit {
     public dialog: MatDialog,
     public router: Router,
     public storageService: StorageService,
-    public authorizationService: AuthenticationService
+    public authorizationService: AuthenticationService,
+    public messagingService: MessagingService
   ) {}
 
   public toggleSidebar() {
@@ -51,6 +53,10 @@ export class NavbarLayoutComponent implements OnInit {
     //     this.authorizationService.authorize();
     //   });
     // });
+  }
+
+  allowNotifications() {
+    this.messagingService.requestPermission();
   }
 
   ngOnInit() {
