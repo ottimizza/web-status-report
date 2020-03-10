@@ -35,6 +35,15 @@ const routes: Routes = [
         canActivate: [AuthGuard]
       }
     ]
+    canActivate: [AuthGuard], // Should be replaced with actual auth guard
+    children: []
+  },
+  {
+    path: 'integracoes',
+    canActivate: [AuthGuard],
+    component: ContentLayoutComponent,
+    loadChildren: () =>
+      import('@modules/integrateds/integrateds.module').then(m => m.IntegratedModule)
   },
   {
     path: 'auth',

@@ -48,9 +48,7 @@ export class AuthCallbackComponent implements OnInit {
                   this.storageService.destroy('redirect_url');
                   if (value) {
                     that.router.navigate([value]);
-                  } else {
-                    that.router.navigate(['/dashboard']);
-                  }
+                  } else that.router.navigate(['']);
                 });
 
                 // const storeUserInfo = that.authenticationService.storeUserInfo();
