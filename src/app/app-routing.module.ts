@@ -5,6 +5,7 @@ import { AuthLayoutComponent } from './layout/auth-layout/auth-layout.component'
 import { ContentLayoutComponent } from './layout/content-layout/content-layout.component';
 
 import { NoAuthGuard } from '@app/guard/no-auth.guard';
+import { AuthGuard } from '@app/guard/auth.guard';
 
 const routes: Routes = [
   {
@@ -19,7 +20,21 @@ const routes: Routes = [
     },
     component: ContentLayoutComponent,
     canActivate: [NoAuthGuard], // Should be replaced with actual auth guard
-    children: []
+    children: [
+      {
+        path: '',
+        redirectTo: 'home',
+        pathMatch: 'full'
+      },
+      {
+        path: 'home',
+        data: {
+          breadcrumb: 'Início'
+        },
+        loadChildren: () => import('@modules/home/home.module').then(m => m.HomeModule),
+        canActivate: [AuthGuard]
+      }
+    ]
   },
   {
     path: 'auth',
