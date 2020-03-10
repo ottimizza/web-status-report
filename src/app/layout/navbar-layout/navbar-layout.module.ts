@@ -1,3 +1,4 @@
+import { MatIconModule } from '@angular/material/icon';
 import { NgModule } from '@angular/core';
 
 /* ********************************************************************************* *
@@ -16,9 +17,9 @@ import { BrandModule } from '@shared/components/brand/brand.module';
  * ********************************************************************************* */
 import { NavbarLayoutComponent } from './navbar-layout.component';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatToolbarModule } from '@angular/material';
 
 @NgModule({
   declarations: [NavbarLayoutComponent],
@@ -27,9 +28,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     CommonModule,
     RouterModule,
     AvatarModule,
-    BrandModule,
-    MatMenuModule,
-    MatDialogModule
+    MatMenuModule
   ],
   exports: [NavbarLayoutComponent],
   providers: [],
