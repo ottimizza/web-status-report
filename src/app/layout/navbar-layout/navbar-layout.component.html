@@ -1,38 +1,57 @@
 <header class="topbar is_stuck" style="position: absolute; top: 0px; width: 100%;">
   <nav class="navbar top-navbar navbar-toggleable-sm navbar-light">
-    <div class="navbar-header">
-      <app-brand [src]="logo || DEFAULT_LOGO" classes="px-5" class="text-center">
-      </app-brand>
-    </div>
     <div class="navbar-collapse">
-      <ul class="navbar-nav mr-auto mt-md-0">
+      <ul class="mt-md-0 mb-0 sidebar-toggler">
         <li class="nav-item px-3">
-          <a class="nav-link sidebar-toggler hidden-md-up text-muted waves-effect waves-dark" (click)="toggleSidebar()">
+          <a
+            class="nav-link hidden-md-up text-muted waves-effect waves-dark"
+            (click)="toggleSidebar()"
+          >
             <i class="fa fa-bars fa-md"></i>
           </a>
         </li>
       </ul>
-      <div class="row align-items-center mr-3 signin-as-navbar signin-as-navbar">
-        <span class="accounting-name">
-          {{ currentUser.organization.name }}
-        </span>
-        <i class="fa fa-pencil mr-4 ml-3 cursor-pointer" (click)="openSiginAsModal()" *ngIf="currentUser.type === 0"></i>
-      </div>
+      <ul class="m-0 pl-lg-2">
+        <app-brand [src]="logo || DEFAULT_LOGO" classes="" class="text-center"> </app-brand>
+      </ul>
+      <ul class="mb-0 ml-auto signin-as-navbar">
+        <div class="row align-items-center mr-3 signin-as-navbar signin-as-navbar">
+          <span class="accounting-name">
+            {{ currentUser.organization.name }}
+          </span>
+          <i
+            class="fa fa-pencil mr-4 ml-3 cursor-pointer"
+            (click)="openSiginAsModal()"
+            *ngIf="currentUser.type === 0"
+          ></i>
+        </div>
+      </ul>
       <ul class="navbar-nav my-lg-0">
         <li class="nav-item dropdown">
           <a [matMenuTriggerFor]="menu" class="cursor-pointer">
-            <img class="img-thumbnail rounded-circle"
-              [src]="currentUser.avatar || './assets/images/Portrait_Placeholder.png'" width="45" height="45"
-              onError="this.src='./assets/images/Portrait_Placeholder.png';">
+            <img
+              class="img-thumbnail rounded-circle"
+              [src]="currentUser.avatar || './assets/images/Portrait_Placeholder.png'"
+              width="45"
+              height="45"
+              onError="this.src='./assets/images/Portrait_Placeholder.png';"
+            />
           </a>
           <mat-menu #menu="matMenu">
-            <a [routerLink]="['/dashboard/users/', currentUser.id]"
-              class="dropdown-header dropdown-item text-center mt-0 py-3">
-              <h6 class="text-dark overflow-ellipsis m-0">{{currentUser.firstName + ' ' + currentUser.lastName}}</h6>
+            <a
+              [routerLink]="['/dashboard/users/', currentUser.id]"
+              class="dropdown-header dropdown-item text-center mt-0 py-3"
+            >
+              <h6 class="text-dark overflow-ellipsis m-0">
+                {{ currentUser.firstName + ' ' + currentUser.lastName }}
+              </h6>
               <small class="text-muted text-lowercase">{{ currentUser.email }}</small>
             </a>
-            <a mat-menu-item *ngIf="shouldShowAccountingDetailsPage()"
-              [routerLink]="['/dashboard/organizations/', currentUser.organization.id]">
+            <a
+              mat-menu-item
+              *ngIf="shouldShowAccountingDetailsPage()"
+              [routerLink]="['/dashboard/organizations/', currentUser.organization.id]"
+            >
               <i class="fas fa-sign-out-alt" aria-hidden="true"></i>&nbsp;&nbsp;
               <span>Configurações da Contabilidade</span>
             </a>
