@@ -5,9 +5,10 @@ import { IntegratedListComponent } from './page/integrateds-list/integrateds-lis
 import { BreadcrumbModule } from '@shared/components/breadcrumb/breadcrumb.module';
 import { ComplexSearchModule } from '@shared/components/search/complex-search.module';
 import { MatChipsModule, MatIconModule } from '@angular/material';
+import { IntegratedCompanyComponent } from './page/integrateds-list/integrated-company/integrated-company.component';
 
 @NgModule({
-  declarations: [IntegratedListComponent],
+  declarations: [IntegratedListComponent, IntegratedCompanyComponent],
   imports: [
     IntegratedRouting,
     CommonModule,
