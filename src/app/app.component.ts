@@ -1,10 +1,9 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { RxEvent } from '@app/services/rx-event.service';
-import { DOCUMENT } from '@angular/common';
 import { UpdateService } from '@app/services/update.service';
 import { MessagingService } from '@app/services/messaging.service';
 import { LoggerUtils } from '@shared/utils/logger.utils';
-
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +11,6 @@ import { LoggerUtils } from '@shared/utils/logger.utils';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-
   public updateAvailable = false;
 
   constructor(
@@ -44,5 +42,4 @@ export class AppComponent implements OnInit {
     this.messagingService.receiveMessage();
     this.messagingService.currentMessage.subscribe(msg => LoggerUtils.log(msg));
   }
-
 }
