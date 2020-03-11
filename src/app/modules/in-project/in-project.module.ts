@@ -7,6 +7,7 @@ import { ComplexSearchModule } from '@shared/components/search/complex-search.mo
 import { MatChipsModule, MatIconModule } from '@angular/material';
 import { CommonModule } from '@angular/common';
 import { InProjectCardComponent } from './page/in-project-list/in-project-card/in-project-card.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [InProjectListComponent, InProjectCompanyComponent, InProjectCardComponent],
@@ -16,7 +17,8 @@ import { InProjectCardComponent } from './page/in-project-list/in-project-card/i
     BreadcrumbModule,
     ComplexSearchModule,
     MatChipsModule,
-    MatIconModule
+    MatIconModule,
+    RouterModule
   ]
 })
 export class InProjectModule {}

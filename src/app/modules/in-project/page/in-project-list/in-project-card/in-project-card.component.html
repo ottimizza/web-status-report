@@ -1,10 +1,10 @@
 <div class="border-top pt-3 pb-2 integration-card">
-  <h5 class="text-primary"><span class="cursor-pointer">({{ project.id }}) {{ project.integration }}</span></h5>
+  <h5 class="text-primary"><a [routerLink]="['/dashboard/projetos/empresa', project.id]">({{ project.id }}) {{ project.integration }}</a></h5>
   <div class="row w-100 m-0 font-70">
-    <div class="col-10 p-0">
-      <span class="status">{{ project.projectStatus }}</span>
-      <span style="white-space: nowrap;">&nbsp;&nbsp;{{ project.pendingAction }}</span>
+    <div class="col-sm-10 col-md-10 col-lg-10 col-xl-10 p-0">
+      <span class="status nowrap">{{ project.projectStatus }}</span>
+      <span class="nowrap">&nbsp;&nbsp;{{ project.pendingAction }}</span>
     </div>
-    <div class="col-2"></div>
+    <div class="col-sm-2 col-md-2 col-lg-2 col-xl-2"><span class="float-right">{{ project.pendingActionDate }}</span></div>
   </div>
 </div>
