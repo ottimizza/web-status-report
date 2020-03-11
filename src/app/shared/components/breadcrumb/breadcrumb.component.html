@@ -4,21 +4,15 @@
       <ol class="breadcrumb m-0 p-0">
         <li *ngFor="let breadcrumb of breadcrumbs" class="breadcrumb-item">
           <a [routerLink]="[breadcrumb.url, breadcrumb.params]" class="">
-            <span class="d-sm-inline-block d-md-none">
-              <i v-bind:class="item.icon"></i>
-            </span>
             <span class="d-md-inline-block">
-              {{breadcrumb.label}}
+              {{ breadcrumb.label }}
             </span>
           </a>
         </li>
         <li *ngIf="append" class="breadcrumb-item">
           <a [routerLink]="append.params ? [append.url, append.params] : [append.url]" class="">
-            <span class="d-sm-inline-block d-md-none">
-              <i v-bind:class="item.icon"></i>
-            </span>
             <span class="d-md-inline-block">
-              {{append.label}}
+              {{ append.label }}
             </span>
           </a>
         </li>

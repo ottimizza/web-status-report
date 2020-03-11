@@ -10,16 +10,16 @@ import { AuthGuard } from '@app/guard/auth.guard';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'dashboard',
+    redirectTo: 'content',
     pathMatch: 'full'
   },
   {
-    path: 'dashboard',
-    data: {
-      breadcrumb: 'Dashboard'
-    },
+    path: 'content',
     component: ContentLayoutComponent,
-    canActivate: [AuthGuard], // Should be replaced with actual auth guard
+    canActivate: [NoAuthGuard], // Should be replaced with actual auth guard
+    data: {
+      breadcrumb: 'Início'
+    },
     children: [
       {
         path: '',
@@ -28,17 +28,14 @@ const routes: Routes = [
       },
       {
         path: 'home',
-        canActivate: [AuthGuard],
-        data: {
-          breadcrumb: 'Início'
-        },
+        canActivate: [NoAuthGuard],
         loadChildren: () => import('@modules/home/home.module').then(m => m.HomeModule)
       },
       {
         path: 'integracoes',
         canActivate: [AuthGuard],
         data: {
-          breadcrumb: 'Integrações'
+          breadcrumb: 'Integradas'
         },
         loadChildren: () =>
           import('@modules/integrateds/integrateds.module').then(m => m.IntegratedModule)

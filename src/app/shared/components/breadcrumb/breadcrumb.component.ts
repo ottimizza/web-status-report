@@ -77,5 +77,6 @@ export class BreadcrumbComponent implements OnInit {
     this.router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe(event => {
       this.breadcrumbs = this.getBreadcrumbs(this.activatedRoute.root);
     });
+    console.log(this.append);
   }
 }

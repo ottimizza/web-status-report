@@ -7,7 +7,7 @@ const routes: Routes = [
     path: '',
     data: {
       breadcrumb: null,
-      path: '/dashboard/home'
+      path: '/content/home'
     },
     component: HomeComponent
   }

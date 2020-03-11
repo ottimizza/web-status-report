@@ -1,5 +1,16 @@
-// @import '../../../../../../node_modules/rfs/scss.scss';
+@import '../../../../../../node_modules/rfs/scss.scss';
 
-// h1 {
-//   @include rfs(40px);
-// }
+h1 {
+  @include rfs(40px);
+}
+
+.row .text-center {
+  margin-bottom: 1rem;
+}
+
+.card-body {
+  margin: 0 !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

@@ -32,9 +32,6 @@ export class SidebarLayoutComponent implements OnInit {
     this.items = [
       { icon: 'fad fa-briefcase', label: 'Integrações', url: '/integracoes' },
       { icon: 'fad fa-tasks', label: 'Em Projeto', url: '/projetos' }
-      // { icon: 'fad fa-box', label: 'Aplicativos', url: '/dashboard/products' },
-      // { icon: 'fad fa-users', label: 'Usuários', url: '/dashboard/users' },
-      // { icon: 'fad fa-industry-alt', label: 'Empresas', url: '/dashboard/organizations' }
     ];
   }
 }

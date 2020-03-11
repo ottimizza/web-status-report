@@ -6,10 +6,11 @@
         <li *ngFor="let item of items">
           <a
             class="waves-effect waves-dark"
-            [routerLink]="'/dashboard' + item.url"
+            [routerLink]="'/content' + item.url"
             aria-expanded="false"
           >
-            <i class="fa-fw" [class]="item.icon"></i><span class="hide-menu">{{ item.label }}</span>
+            <i class="fa-fw" [class]="item.icon"></i>
+            <span class="hide-menu">{{ item.label }}</span>
           </a>
         </li>
         <!-- <li class="signin-as-sidebar" (click)="openSiginAsModal()" *ngIf="currentUser.type === 0">
