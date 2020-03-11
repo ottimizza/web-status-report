@@ -19,16 +19,33 @@ const routes: Routes = [
       breadcrumb: 'Dashboard'
     },
     component: ContentLayoutComponent,
-    canActivate: [AuthGuard], // Should be replaced with actual auth guard
-    children: []
+    canActivate: [NoAuthGuard], // Should be replaced with actual auth guard
+    children: [
+      {
+        path: '',
+        redirectTo: 'home',
+        pathMatch: 'full'
+      },
+      {
+        path: 'home',
+        canActivate: [NoAuthGuard],
+        data: {
+          breadcrumb: 'Início'
+        },
+        loadChildren: () => import('@modules/home/home.module').then(m => m.HomeModule)
+      },
+      {
+        path: 'integracoes',
+        canActivate: [NoAuthGuard],
+        data: {
+          breadcrumb: 'Integrações'
+        },
+        loadChildren: () =>
+          import('@modules/integrateds/integrateds.module').then(m => m.IntegratedModule)
+      }
+    ]
   },
-  {
-    path: 'integracoes',
-    canActivate: [AuthGuard],
-    component: ContentLayoutComponent,
-    loadChildren: () =>
-      import('@modules/integrateds/integrateds.module').then(m => m.IntegratedModule)
-  },
+
   {
     path: 'auth',
     component: AuthLayoutComponent,
