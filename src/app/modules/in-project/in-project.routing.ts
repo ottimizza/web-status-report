@@ -11,6 +11,9 @@ const routes: Routes = [
   },
   {
     path: 'lista',
+    data: {
+      breadcrumb: null
+    },
     component: InProjectListComponent
   },
   {
