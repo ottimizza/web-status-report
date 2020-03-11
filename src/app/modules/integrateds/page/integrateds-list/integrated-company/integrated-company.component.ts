@@ -8,6 +8,10 @@ import { Input, Component } from '@angular/core';
       .integration-card {
         font-size: 90%;
       }
+      span,
+      strong {
+        font-family: sans-serif, Arial, Tahoma, Verdana;
+      }
     `
   ]
 })

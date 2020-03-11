@@ -6,6 +6,7 @@ import { BreadcrumbModule } from '@shared/components/breadcrumb/breadcrumb.modul
 import { ComplexSearchModule } from '@shared/components/search/complex-search.module';
 import { MatChipsModule, MatIconModule } from '@angular/material';
 import { IntegratedCompanyComponent } from './page/integrateds-list/integrated-company/integrated-company.component';
+import { ScrollTrackerModule } from '@shared/directives/scroll-tracker.module';
 
 @NgModule({
   declarations: [IntegratedListComponent, IntegratedCompanyComponent],
@@ -15,7 +16,8 @@ import { IntegratedCompanyComponent } from './page/integrateds-list/integrated-c
     BreadcrumbModule,
     ComplexSearchModule,
     MatChipsModule,
-    MatIconModule
+    MatIconModule,
+    ScrollTrackerModule
   ]
 })
 export class IntegratedModule {}

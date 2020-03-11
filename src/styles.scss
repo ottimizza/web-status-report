@@ -70,6 +70,11 @@ body {
   font-weight: bold;
 }
 
+.scroll-container {
+  max-height: calc(100vh - 70px);
+  overflow: auto;
+}
+
 .navbar-brand {
   img {
     max-height: 60px;

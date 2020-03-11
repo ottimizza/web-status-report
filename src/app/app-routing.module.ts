@@ -33,12 +33,21 @@ const routes: Routes = [
       },
       {
         path: 'integracoes',
-        canActivate: [NoAuthGuard],
+        canActivate: [AuthGuard],
         data: {
           breadcrumb: 'Integradas'
         },
         loadChildren: () =>
           import('@modules/integrateds/integrateds.module').then(m => m.IntegratedModule)
+      },
+      {
+        path: 'projetos',
+        canActivate: [AuthGuard],
+        data: {
+          breadcrumb: 'Em Projeto'
+        },
+        loadChildren: () =>
+          import('@modules/in-project/in-project.module').then(m => m.InProjectModule)
       }
     ]
   },

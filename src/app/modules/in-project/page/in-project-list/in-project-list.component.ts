@@ -1,19 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { FakeApiService } from '@app/http/fake-api.serive';
-import { PageInfo } from '@shared/models/GenericPageableResponse';
 import { BreadCrumb } from '@shared/components/breadcrumb/breadcrumb.component';
 import { HackingRule } from '@shared/components/search/models/HackingRule';
 import { SearchRule } from '@shared/components/search/models/SearchRule';
 import { SearchOption } from '@shared/components/search/models/SearchOption';
 import { Filterable } from '@shared/models/Filterable';
+import { FakeApiService } from '@app/http/fake-api.serive';
 
 @Component({
-  templateUrl: './integrateds-list.component.html',
-  styleUrls: ['./integrateds-list.component.scss']
+  templateUrl: './in-project-list.component.html',
+  styleUrls: ['in-project-list.component.scss']
 })
-export class IntegratedListComponent implements OnInit, Filterable<any> {
+export class InProjectListComponent implements OnInit, Filterable<any> {
   dataSource: any[];
-  pageInfo: PageInfo;
 
   breadcrumb: BreadCrumb = {
     label: 'Voltar',
@@ -23,17 +21,21 @@ export class IntegratedListComponent implements OnInit, Filterable<any> {
   filters: SearchOption[] = [];
   defaultRule = SearchRule.builder()
     .id('default')
-    .value({ organization: '' })
-    .description('Buscar por: "{0}"')
+    .value({ company: '' })
+    .description('Procurar por: "{0}"')
     .build();
 
-  constructor(private _service: FakeApiService) {}
+  constructor(private _fake: FakeApiService) {}
 
   ngOnInit(): void {
-    this._service.getIntegratedOrganizations().subscribe(int => {
-      this.pageInfo = int.pageInfo;
-      this.dataSource = int.records;
+    this._fake.getInProjectOrganizations().subscribe(result => {
+      this.dataSource = result.records;
     });
+  }
+
+  filterApply(event: SearchOption) {
+    this.filters.push(event);
+    this.fetch();
   }
 
   hackings() {
@@ -52,31 +54,21 @@ export class IntegratedListComponent implements OnInit, Filterable<any> {
       builder('organization', /(integraçao)\:\s(?<value>.+)/gi, 'Integração'),
       builder('organization', /(integração)\:\s(?<value>.+)/gi, 'Integração'),
       builder('organization', /(empresa)\:\s(?<value>.+)/gi, 'Integração'),
-      builder('lastLotDate', /(lote)\:\s(?<value>.+)/gi, 'Último lote processado'),
-      builder('lastLotDate', /(data)\:\s(?<value>.+)/gi, 'Último lote processado'),
-      builder('total', /(total)\:\s(?<value>.+)/gi, 'Total de lançamentos processados'),
-      builder('total', /(lancamentos)\:\s(?<value>.+)/gi, 'Total de lançamentos processados'),
-      builder('total', /(lançamentos)\:\s(?<value>.+)/gi, 'Total de lançamentos processados')
+      builder('status', /(status)\:\s(?<value>.+)/gi, 'Status do projeto'),
+      builder('last', /(ultima)\:\s(?<value>.+)/gi, 'Última ação'),
+      builder('last', /(última)\:\s(?<value>.+)/gi, 'Última ação'),
+      builder('pending', /(pendente)\:\s(?<value>.+)/gi, 'Ação pendente'),
+      builder('responsables', /(responsável)\:\s(?<value>.+)/gi, 'Responsáveis'),
+      builder('responsables', /(responsavel)\:\s(?<value>.+)/gi, 'Responsáveis'),
+      builder('responsables', /(responsáveis)\:\s(?<value>.+)/gi, 'Responsáveis'),
+      builder('responsables', /(responsaveis)\:\s(?<value>.+)/gi, 'Responsáveis')
     ];
   }
 
-  filterApply(event: SearchOption) {
-    this.filters.push(event);
-    this.fetch();
-  }
-
-  removeFilter(filter: SearchOption) {
-    this.filters.splice(this.filters.indexOf(filter), 1);
+  removeFilter(chip: SearchOption) {
+    this.filters.splice(this.filters.indexOf(chip), 1);
     this.fetch();
   }
 
   fetch() {}
-
-  onScroll(event: boolean) {
-    if (this.pageInfo && this.pageInfo.hasNext) {
-      this.nextPage();
-    }
-  }
-
-  nextPage() {}
 }

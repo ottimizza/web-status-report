@@ -51,7 +51,7 @@ export class FakeApiService {
     for (let i = 0; i < 10; i++) {
       ret.records.push(
         new IntegratedOrganizations(
-          `( ${Math.round(Math.random() * 200)} )  TÍTULO`,
+          `( ${Math.round(Math.random() * 200)} )  NOVO HORIZONTE COMÉRCIO E DERIVADOS`,
           `${date.getMonth() + 1}/${date.getFullYear()}`,
           Math.round(Math.random() * 5000)
         )
@@ -102,7 +102,7 @@ export class FakeApiService {
       'RICAMARE',
       'MAINHARDT OUTSOURCING LTDA'
     ];
-    return array[Math.round(Math.random() * 4)];
+    return array[Math.round(Math.random() * 3)];
   }
 
   private get _lastAction() {
@@ -112,7 +112,7 @@ export class FakeApiService {
       'Contratou a integração',
       'Preencheu planilha auxiliar'
     ];
-    return array[Math.round(Math.random() * 4)];
+    return array[Math.round(Math.random() * 3)];
   }
 
   private _simpleNormalize(response: GenericResponse<any>) {
