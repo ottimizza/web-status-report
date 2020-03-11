@@ -22,4 +22,8 @@ export class InProjectCompanyComponent implements OnInit {
       this.breadcrumb.label = result.records[0].integration;
     });
   }
+
+  teste() {
+    alert('A B C');
+  }
 }
