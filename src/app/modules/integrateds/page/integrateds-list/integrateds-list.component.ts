@@ -70,4 +70,12 @@ export class IntegratedListComponent implements OnInit {
   }
 
   private _fetch() {}
+
+  onScroll(event: boolean) {
+    if (this.pageInfo && this.pageInfo.hasNext) {
+      this.nextPage();
+    }
+  }
+
+  nextPage() {}
 }

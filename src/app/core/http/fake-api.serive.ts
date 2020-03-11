@@ -51,7 +51,7 @@ export class FakeApiService {
     for (let i = 0; i < 10; i++) {
       ret.records.push(
         new IntegratedOrganizations(
-          `( ${Math.round(Math.random() * 200)} )  TÍTULO`,
+          `( ${Math.round(Math.random() * 200)} )  NOVO HORIZONTE COMÉRCIO E DERIVADOS`,
           `${date.getMonth() + 1}/${date.getFullYear()}`,
           Math.round(Math.random() * 5000)
         )
