@@ -6,9 +6,10 @@ import { BreadcrumbModule } from '@shared/components/breadcrumb/breadcrumb.modul
 import { ComplexSearchModule } from '@shared/components/search/complex-search.module';
 import { MatChipsModule, MatIconModule } from '@angular/material';
 import { CommonModule } from '@angular/common';
+import { InProjectCardComponent } from './page/in-project-list/in-project-card/in-project-card.component';
 
 @NgModule({
-  declarations: [InProjectListComponent, InProjectCompanyComponent],
+  declarations: [InProjectListComponent, InProjectCompanyComponent, InProjectCardComponent],
   imports: [
     CommonModule,
     InProjectRoutingModule,

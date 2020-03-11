@@ -1,15 +1,16 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { BreadCrumb } from '@shared/components/breadcrumb/breadcrumb.component';
 import { HackingRule } from '@shared/components/search/models/HackingRule';
 import { SearchRule } from '@shared/components/search/models/SearchRule';
 import { SearchOption } from '@shared/components/search/models/SearchOption';
 import { Filterable } from '@shared/models/Filterable';
+import { FakeApiService } from '@app/http/fake-api.serive';
 
 @Component({
   templateUrl: './in-project-list.component.html',
   styleUrls: ['in-project-list.component.scss']
 })
-export class InProjectListComponent implements Filterable<any> {
+export class InProjectListComponent implements OnInit, Filterable<any> {
   dataSource: any[];
 
   breadcrumb: BreadCrumb = {
@@ -23,6 +24,14 @@ export class InProjectListComponent implements Filterable<any> {
     .value({ company: '' })
     .description('Procurar por: "{0}"')
     .build();
+
+  constructor(private _fake: FakeApiService) {}
+
+  ngOnInit(): void {
+    this._fake.getInProjectOrganizations().subscribe(result => {
+      this.dataSource = result.records;
+    });
+  }
 
   filterApply(event: SearchOption) {
     this.filters.push(event);

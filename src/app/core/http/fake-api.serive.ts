@@ -102,7 +102,7 @@ export class FakeApiService {
       'RICAMARE',
       'MAINHARDT OUTSOURCING LTDA'
     ];
-    return array[Math.round(Math.random() * 4)];
+    return array[Math.round(Math.random() * 3)];
   }
 
   private get _lastAction() {
@@ -112,7 +112,7 @@ export class FakeApiService {
       'Contratou a integração',
       'Preencheu planilha auxiliar'
     ];
-    return array[Math.round(Math.random() * 4)];
+    return array[Math.round(Math.random() * 3)];
   }
 
   private _simpleNormalize(response: GenericResponse<any>) {
