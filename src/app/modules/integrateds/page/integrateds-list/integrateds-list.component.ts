@@ -5,12 +5,13 @@ import { BreadCrumb } from '@shared/components/breadcrumb/breadcrumb.component';
 import { HackingRule } from '@shared/components/search/models/HackingRule';
 import { SearchRule } from '@shared/components/search/models/SearchRule';
 import { SearchOption } from '@shared/components/search/models/SearchOption';
+import { Filterable } from '@shared/models/Filterable';
 
 @Component({
   templateUrl: './integrateds-list.component.html',
   styleUrls: ['./integrateds-list.component.scss']
 })
-export class IntegratedListComponent implements OnInit {
+export class IntegratedListComponent implements OnInit, Filterable<any> {
   dataSource: any[];
   pageInfo: PageInfo;
 
@@ -61,15 +62,15 @@ export class IntegratedListComponent implements OnInit {
 
   filterApply(event: SearchOption) {
     this.filters.push(event);
-    this._fetch();
+    this.fetch();
   }
 
   removeFilter(filter: SearchOption) {
     this.filters.splice(this.filters.indexOf(filter), 1);
-    this._fetch();
+    this.fetch();
   }
 
-  private _fetch() {}
+  fetch() {}
 
   onScroll(event: boolean) {
     if (this.pageInfo && this.pageInfo.hasNext) {
