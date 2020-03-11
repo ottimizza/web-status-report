@@ -18,6 +18,9 @@ const routes: Routes = [
   },
   {
     path: 'empresa/:companyId',
+    data: {
+      breadcrumb: 'Empresa'
+    },
     component: InProjectCompanyComponent
   }
 ];
