@@ -4,6 +4,7 @@ import { InProjectListComponent } from './page/in-project-list/in-project-list.c
 import { InProjectCompanyComponent } from './page/in-project-company/in-project-company.component';
 
 @NgModule({
-  imports: [InProjectRoutingModule, InProjectListComponent, InProjectCompanyComponent]
+  declarations: [InProjectListComponent, InProjectCompanyComponent],
+  imports: [InProjectRoutingModule]
 })
 export class InProjectModule {}
