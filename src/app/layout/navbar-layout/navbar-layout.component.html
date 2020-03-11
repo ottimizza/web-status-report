@@ -31,7 +31,7 @@
           </h6>
           <small class="text-muted text-lowercase">{{ currentUser.email }}</small>
         </a>
-        <a mat-menu-item *ngIf="shouldShowAccountingDetailsPage()">
+        <a mat-menu-item (click)="allowNotifications()">
           <i class="fas fa-bell" aria-hidden="true"></i>&nbsp;&nbsp;
           <span>Habilitar Notificações</span>
         </a>

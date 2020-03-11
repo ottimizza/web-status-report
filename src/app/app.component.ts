@@ -38,7 +38,7 @@ export class AppComponent implements OnInit {
   }
 
   public ngOnInit() {
-    this.messagingService.requestPermission();
+    // this.messagingService.requestPermission();
     this.messagingService.receiveMessage();
     this.messagingService.currentMessage.subscribe(msg => LoggerUtils.log(msg));
   }
