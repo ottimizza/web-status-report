@@ -51,7 +51,7 @@ export class BreadcrumbComponent implements OnInit {
       url += `/${routeURL}`;
       const breadcrumb: BreadCrumb = {
         label: child.snapshot.data[ROUTE_DATA_BREADCRUMB],
-        params: {}, //child.snapshot.params,
+        params: {}, // child.snapshot.params,
         url: child.snapshot.data[ROUTE_DATA_PATH] || url
       };
       breadcrumbs.push(breadcrumb);
@@ -77,5 +77,6 @@ export class BreadcrumbComponent implements OnInit {
     this.router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe(event => {
       this.breadcrumbs = this.getBreadcrumbs(this.activatedRoute.root);
     });
+    console.log(this.append);
   }
 }
