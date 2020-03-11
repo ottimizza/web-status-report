@@ -42,6 +42,15 @@ const routes: Routes = [
         },
         loadChildren: () =>
           import('@modules/integrateds/integrateds.module').then(m => m.IntegratedModule)
+      },
+      {
+        path: 'projetos',
+        canActivate: [AuthGuard],
+        data: {
+          breadcrumb: 'Em Projeto'
+        },
+        loadChildren: () =>
+          import('@modules/in-project/in-project.module').then(m => m.InProjectModule)
       }
     ]
   },
