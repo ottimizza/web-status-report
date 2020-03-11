@@ -19,7 +19,7 @@ const routes: Routes = [
       breadcrumb: 'Dashboard'
     },
     component: ContentLayoutComponent,
-    canActivate: [NoAuthGuard], // Should be replaced with actual auth guard
+    canActivate: [AuthGuard], // Should be replaced with actual auth guard
     children: [
       {
         path: '',
@@ -28,7 +28,7 @@ const routes: Routes = [
       },
       {
         path: 'home',
-        canActivate: [NoAuthGuard],
+        canActivate: [AuthGuard],
         data: {
           breadcrumb: 'Início'
         },
@@ -36,7 +36,7 @@ const routes: Routes = [
       },
       {
         path: 'integracoes',
-        canActivate: [NoAuthGuard],
+        canActivate: [AuthGuard],
         data: {
           breadcrumb: 'Integrações'
         },

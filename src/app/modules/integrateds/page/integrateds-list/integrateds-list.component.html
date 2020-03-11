@@ -1,25 +1,29 @@
-<app-breadcrumb [append]="breadcrumb"></app-breadcrumb>
+<div class="scroll-container" appScrollTracker (scrollEnd)="onScroll($event)">
+  <app-breadcrumb [append]="breadcrumb"></app-breadcrumb>
 
-<div class="mt-2 p-4">
+  <div class="mt-2 p-4">
 
-  <app-complex-search-input
-    [hackings]="hackings()"
-    [defaultRule]="defaultRule"
-    (filterApplied)="filterApply($event)"
-  ></app-complex-search-input>
-  <div class="mb-4" *ngIf="dataSource && dataSource.length">
-    <mat-chip-list>
-      <mat-chip *ngFor="let chip of filters" [selectable]="true" [removable]="true" (removed)="removeFilter(chip)">
-        {{ chip.description }}
-        <mat-icon matChipRemove>cancel</mat-icon>
-      </mat-chip>
-    </mat-chip-list>
+    <app-complex-search-input
+      [hackings]="hackings()"
+      [defaultRule]="defaultRule"
+      (filterApplied)="filterApply($event)"
+    ></app-complex-search-input>
+    <div class="mb-4" *ngIf="dataSource && dataSource.length">
+      <mat-chip-list>
+        <mat-chip *ngFor="let chip of filters" [selectable]="true" [removable]="true" (removed)="removeFilter(chip)">
+          {{ chip.description }}
+          <mat-icon matChipRemove>cancel</mat-icon>
+        </mat-chip>
+      </mat-chip-list>
+    </div>
+
+    <div class="row m-0 w-100 p-0 mt-1">
+      <h4>Integrações</h4>
+    </div>
+
+    <div>
+      <app-integration *ngFor="let integration of dataSource" [integration]="integration"></app-integration>
+    </div>
+
   </div>
-
-  <div class="row m-0 w-100 p-0 mt-1">
-    <h4>Integrações</h4>
-  </div>
-
-  <app-integration *ngFor="let integration of dataSource" [integration]="integration"></app-integration>
-
 </div>
