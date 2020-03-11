@@ -5,6 +5,7 @@ import { AuthLayoutComponent } from './layout/auth-layout/auth-layout.component'
 import { ContentLayoutComponent } from './layout/content-layout/content-layout.component';
 
 import { NoAuthGuard } from '@app/guard/no-auth.guard';
+import { AuthGuard } from '@app/guard/auth.guard';
 
 const routes: Routes = [
   {

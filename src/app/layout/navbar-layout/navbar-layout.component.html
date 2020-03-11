@@ -19,11 +19,11 @@
           <span class="accounting-name">
             {{ currentUser.organization.name }}
           </span>
-          <i
+          <!-- <i
             class="fa fa-pencil mr-4 ml-3 cursor-pointer"
             (click)="openSiginAsModal()"
             *ngIf="currentUser.type === 0"
-          ></i>
+          ></i> -->
         </div>
       </ul>
       <ul class="navbar-nav my-lg-0">
@@ -40,7 +40,7 @@
           <mat-menu #menu="matMenu">
             <a
               [routerLink]="['/dashboard/users/', currentUser.id]"
-              class="dropdown-header dropdown-item text-center mt-0 py-3"
+              class="dropdown-headerzx dropdown-item text-center mt-0 py-3"
             >
               <h6 class="text-dark overflow-ellipsis m-0">
                 {{ currentUser.firstName + ' ' + currentUser.lastName }}
