@@ -1,5 +1,7 @@
 import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
+import { InProjectListComponent } from './page/in-project-list/in-project-list.component';
+import { InProjectCompanyComponent } from './page/in-project-company/in-project-company.component';
 
 const routes: Routes = [
   {
@@ -8,10 +10,12 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'lista'
+    path: 'lista',
+    component: InProjectListComponent
   },
   {
-    path: 'empresa/:companyId'
+    path: 'empresa/:companyId',
+    component: InProjectCompanyComponent
   }
 ];
 
