@@ -1,2 +1,55 @@
 <app-breadcrumb [append]="breadcrumb"></app-breadcrumb>
 <app-actions [buttons]="buttons" (clicked)="onActionClicked($event)"></app-actions>
+
+<div class="container m-0 p-4 pt-2">
+
+  <div class="row m-4">
+    <div class="col-lg-9 col-xl-9 p-0 mb-4">
+      <strong class="d-block">Projeto:</strong>
+      <input type="text" readonly value="(170) CHAPERFIL INDUSTRIA E COMERCIO">
+    </div>
+
+    <div class="col-lg-1 col-xl-1"></div>
+
+    <div class="col-lg-2 col-xl-2 p-0 mb-3">
+      <strong class="d-block">Status do Projeto:</strong>
+      <div class="tag">4. Roteiro</div>
+    </div>
+  </div>
+
+  <div class="row m-4 mt-0">
+    <div class="col-12 p-0">
+      <div class="row m-0">
+        <strong>Última Ação:&nbsp;&nbsp;</strong>
+        <span>21/02/2020</span>
+      </div>
+      <div class="row m-0">
+        <textarea readonly>Enviada planilha de planilha auxiliar para preenchimentos de contas e históricos</textarea>
+      </div>
+    </div>
+  </div>
+
+  <div class="row m-4">
+    <div class="col-12 p-0">
+      <div class="row m-0">
+        <strong>Ação Pendente (Até):&nbsp;&nbsp;</strong>
+        <span class="d-block">28/02/2020</span>
+      </div>
+      <div class="row m-0">
+        <textarea readonly>Aguardando planilha preenchida</textarea>
+      </div>
+    </div>
+  </div>
+
+  <div class="row m-4">
+    <div class="col-12 p-0">
+      <div class="row m-0">
+        <strong class="d-block">Responsáveis:</strong>
+      </div>
+      <div class="row m-0">
+        <textarea readonly>Marcela (Ott) / Sara</textarea>
+      </div>
+    </div>
+  </div>
+
+</div>
