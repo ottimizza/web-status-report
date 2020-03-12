@@ -1,8 +1,2 @@
 <app-breadcrumb [append]="breadcrumb"></app-breadcrumb>
-<div class="button-container row w-100 m-0 d-inline-block">
-  <div class="col-6"></div>
-  <button class="col-6 action-button float-right" (click)="teste()">
-    <i class="fa fa-lightbulb-on"></i>
-    REGISTRAR COMENTÁRIO
-  </button>
-</div>
+<app-actions [buttons]="buttons" (clicked)="onActionClicked($event)"></app-actions>

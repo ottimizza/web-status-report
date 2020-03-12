@@ -8,6 +8,7 @@ import { MatChipsModule, MatIconModule } from '@angular/material';
 import { CommonModule } from '@angular/common';
 import { InProjectCardComponent } from './page/in-project-list/in-project-card/in-project-card.component';
 import { RouterModule } from '@angular/router';
+import { ActionButtonsModule } from '@shared/components/action-buttons/action-buttons.module';
 
 @NgModule({
   declarations: [InProjectListComponent, InProjectCompanyComponent, InProjectCardComponent],
@@ -18,7 +19,8 @@ import { RouterModule } from '@angular/router';
     ComplexSearchModule,
     MatChipsModule,
     MatIconModule,
-    RouterModule
+    RouterModule,
+    ActionButtonsModule
   ]
 })
 export class InProjectModule {}
