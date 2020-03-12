@@ -22,7 +22,7 @@
         <li class="breadcrumb-item">
           <a
             *ngIf="breadcrumbs.length > 1; else inicio"
-            [routerLink]="breadcrumbs[breadcrumbs.length - 2].url"
+            [routerLink]="route"
           >
             <span>
               Voltar

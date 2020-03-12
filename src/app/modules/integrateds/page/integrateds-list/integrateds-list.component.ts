@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FakeApiService } from '@app/http/fake-api.serive';
 import { PageInfo } from '@shared/models/GenericPageableResponse';
-import { BreadCrumb } from '@shared/components/breadcrumb/breadcrumb.component';
 import { HackingRule } from '@shared/components/search/models/HackingRule';
 import { SearchRule } from '@shared/components/search/models/SearchRule';
 import { SearchOption } from '@shared/components/search/models/SearchOption';
@@ -14,11 +13,6 @@ import { Filterable } from '@shared/models/Filterable';
 export class IntegratedListComponent implements OnInit, Filterable<any> {
   dataSource: any[];
   pageInfo: PageInfo;
-
-  breadcrumb: BreadCrumb = {
-    label: 'Voltar',
-    url: ''
-  };
 
   filters: SearchOption[] = [];
   defaultRule = SearchRule.builder()

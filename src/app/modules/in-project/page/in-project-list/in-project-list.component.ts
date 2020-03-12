@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { BreadCrumb } from '@shared/components/breadcrumb/breadcrumb.component';
 import { HackingRule } from '@shared/components/search/models/HackingRule';
 import { SearchRule } from '@shared/components/search/models/SearchRule';
 import { SearchOption } from '@shared/components/search/models/SearchOption';
@@ -12,11 +11,6 @@ import { FakeApiService } from '@app/http/fake-api.serive';
 })
 export class InProjectListComponent implements OnInit, Filterable<any> {
   dataSource: any[];
-
-  breadcrumb: BreadCrumb = {
-    label: 'Voltar',
-    url: ''
-  };
 
   filters: SearchOption[] = [];
   defaultRule = SearchRule.builder()

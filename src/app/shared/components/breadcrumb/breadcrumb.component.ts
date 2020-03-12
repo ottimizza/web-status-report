@@ -60,6 +60,16 @@ export class BreadcrumbComponent implements OnInit {
     return breadcrumbs;
   }
 
+  get route(): string {
+    // console.log(this.breadcrumbs);
+    // return this.breadcrumbs[this.breadcrumbs.length - 1].url;
+    if (this.append) {
+      return this.breadcrumbs[this.breadcrumbs.length - 1].url;
+    } else {
+      return this.breadcrumbs[this.breadcrumbs.length - 2].url;
+    }
+  }
+
   private isParam(params: Params, segment: string) {
     for (const key of Object.keys(params)) {
       const value = params[key];
