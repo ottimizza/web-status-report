@@ -1,14 +1,19 @@
-.button-container {
-  background-color: rgb(248, 249, 251);
+input,
+textarea,
+.tag {
+  margin-top: 10px;
+  border-radius: 5px;
 }
 
-.action-button {
-  height: 40px;
+input,
+textarea {
   width: 100%;
-  margin: 12px;
-  background-color: rgb(25, 118, 211);
+  padding: 5px;
+  border: solid 1px rgb(206, 206, 206);
+}
+
+.tag {
   color: white;
-  box-shadow: none;
-  border: none;
-  border-radius: 5px;
+  background-color: #007aff;
+  padding: 6px;
 }
