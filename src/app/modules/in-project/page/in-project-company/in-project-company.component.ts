@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BreadCrumb } from '@shared/components/breadcrumb/breadcrumb.component';
 import { FakeApiService } from '@app/http/fake-api.serive';
+import { ActionButton } from '@shared/components/action-buttons/action-buttons.component';
 
 @Component({
   templateUrl: './in-project-company.component.html',
@@ -14,6 +15,14 @@ export class InProjectCompanyComponent implements OnInit {
     url: '/dashboard/projetos/empresa/101'
   };
 
+  buttons: ActionButton[] = [
+    {
+      icon: 'far fa-lightbulb-on',
+      id: 'comment',
+      label: 'Registrar Comentário'
+    }
+  ];
+
   constructor(private _fake: FakeApiService) {}
 
   ngOnInit(): void {
@@ -23,7 +32,11 @@ export class InProjectCompanyComponent implements OnInit {
     });
   }
 
-  teste() {
-    alert('A B C');
+  onActionClicked(id: string) {
+    switch (id) {
+      case 'comment':
+        alert('abc');
+        break;
+    }
   }
 }
