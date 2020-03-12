@@ -11,7 +11,7 @@ export class InProjectCompanyComponent implements OnInit {
 
   breadcrumb: BreadCrumb = {
     label: '',
-    url: '/dashboard/projetos/empresa/101'
+    url: '/content/projetos/empresa/101'
   };
 
   constructor(private _fake: FakeApiService) {}
