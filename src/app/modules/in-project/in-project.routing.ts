@@ -19,7 +19,7 @@ const routes: Routes = [
   {
     path: 'empresa/:companyId',
     data: {
-      breadcrumb: 'Empresa'
+      breadcrumb: null
     },
     component: InProjectCompanyComponent
   }
