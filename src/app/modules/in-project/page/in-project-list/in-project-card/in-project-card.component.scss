@@ -12,3 +12,13 @@
 .nowrap {
   white-space: nowrap;
 }
+
+@media (max-width: 767px) {
+  .nowrap-container {
+    max-width: 300px;
+    max-height: 70px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+}
