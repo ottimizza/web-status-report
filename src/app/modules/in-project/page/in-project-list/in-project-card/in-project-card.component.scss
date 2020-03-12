@@ -5,8 +5,8 @@
   border-radius: 5px;
 }
 
-.font-70 {
-  font-size: 70%;
+.content-field {
+  font-size: 16px;
 }
 
 .nowrap {
@@ -14,11 +14,16 @@
 }
 
 @media (max-width: 767px) {
+  .card-title,
   .nowrap-container {
-    max-width: 300px;
     max-height: 70px;
+    max-width: 300px;
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
+  }
+
+  .content-field {
+    font-size: 14px;
   }
 }
