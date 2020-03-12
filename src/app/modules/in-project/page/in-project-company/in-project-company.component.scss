@@ -12,8 +12,17 @@ textarea {
   border: solid 1px rgb(206, 206, 206);
 }
 
+textarea {
+  height: 80px;
+}
+
 .tag {
   color: white;
   background-color: #007aff;
   padding: 6px;
+  // max-width: 300px;
+}
+
+.margin-13 {
+  height: 13px;
 }
