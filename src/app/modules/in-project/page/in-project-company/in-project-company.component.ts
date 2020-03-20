@@ -35,7 +35,7 @@ export class InProjectCompanyComponent implements OnInit {
   onActionClicked(id: string) {
     switch (id) {
       case 'comment':
-        alert('abc');
+        alert('Comentário registrado');
         break;
     }
   }

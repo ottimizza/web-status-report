@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { InProjectCompany } from '@shared/models/InProject';
 
 @Component({
   selector: 'app-project-card',
@@ -6,5 +7,5 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./in-project-card.component.scss']
 })
 export class InProjectCardComponent {
-  @Input() project: any;
+  @Input() project: InProjectCompany;
 }

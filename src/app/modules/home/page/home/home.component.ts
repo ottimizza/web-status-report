@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { InProjectService } from '@shared/services/in-project.service';
 
 @Component({
   selector: 'app-home',
@@ -6,7 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  constructor() {}
+  inProjectCount: number;
 
-  ngOnInit(): void {}
+  constructor(public inProjectService: InProjectService) {}
+
+  ngOnInit(): void {
+    this.inProjectService.getCount().subscribe(result => (this.inProjectCount = result.record));
+  }
 }

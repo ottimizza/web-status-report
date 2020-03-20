@@ -4,6 +4,9 @@ import { UpdateService } from '@app/services/update.service';
 import { MessagingService } from '@app/services/messaging.service';
 import { LoggerUtils } from '@shared/utils/logger.utils';
 import { DOCUMENT } from '@angular/common';
+import { User } from '@shared/models/User';
+import { InProjectService } from '@shared/services/in-project.service';
+import { InProjectCompany } from '@shared/models/InProject';
 
 @Component({
   selector: 'app-root',
@@ -17,7 +20,8 @@ export class AppComponent implements OnInit {
     @Inject(DOCUMENT) public document: Document,
     private events: RxEvent,
     private updateService: UpdateService,
-    private messagingService: MessagingService
+    private messagingService: MessagingService,
+    public inProjectService: InProjectService
   ) {
     this.updateService.checkForUpdates();
     this.events.subscribe('sw::update', () => {
