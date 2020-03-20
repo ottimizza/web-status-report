@@ -16,7 +16,7 @@ const routes: Routes = [
   {
     path: 'content',
     component: ContentLayoutComponent,
-    canActivate: [NoAuthGuard], // Should be replaced with actual auth guard
+    canActivate: [AuthGuard], // Should be replaced with actual auth guard
     data: {
       breadcrumb: 'Início'
     },
@@ -28,7 +28,7 @@ const routes: Routes = [
       },
       {
         path: 'home',
-        canActivate: [NoAuthGuard],
+        canActivate: [AuthGuard],
         loadChildren: () => import('@modules/home/home.module').then(m => m.HomeModule)
       },
       {

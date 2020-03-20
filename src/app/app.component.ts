@@ -4,6 +4,12 @@ import { UpdateService } from '@app/services/update.service';
 import { MessagingService } from '@app/services/messaging.service';
 import { LoggerUtils } from '@shared/utils/logger.utils';
 import { DOCUMENT } from '@angular/common';
+import { User } from '@shared/models/User';
+import { InProjectService } from '@shared/services/in-project.service';
+import { Integracao } from '@shared/models/Integracao';
+import { IntegratedService } from '@shared/services/integrated.service';
+import { LoteService } from '@shared/services/lote.service';
+import { IntegratedListComponent } from '@modules/integrateds/page/integrateds-list/integrateds-list.component';
 
 @Component({
   selector: 'app-root',
@@ -17,7 +23,8 @@ export class AppComponent implements OnInit {
     @Inject(DOCUMENT) public document: Document,
     private events: RxEvent,
     private updateService: UpdateService,
-    private messagingService: MessagingService
+    private messagingService: MessagingService,
+    public testingService: IntegratedService
   ) {
     this.updateService.checkForUpdates();
     this.events.subscribe('sw::update', () => {
@@ -38,6 +45,7 @@ export class AppComponent implements OnInit {
   }
 
   public ngOnInit() {
+    this.testingService.getPaginated(30, 0).subscribe(result => console.log(result));
     // this.messagingService.requestPermission();
     this.messagingService.receiveMessage();
     this.messagingService.currentMessage.subscribe(msg => LoggerUtils.log(msg));
