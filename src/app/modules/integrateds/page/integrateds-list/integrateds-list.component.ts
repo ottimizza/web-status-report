@@ -5,13 +5,15 @@ import { HackingRule } from '@shared/components/search/models/HackingRule';
 import { SearchRule } from '@shared/components/search/models/SearchRule';
 import { SearchOption } from '@shared/components/search/models/SearchOption';
 import { Filterable } from '@shared/models/Filterable';
+import { IntegratedService } from '@shared/services/integrated.service';
+import { Integracao } from '@shared/models/Integracao';
 
 @Component({
   templateUrl: './integrateds-list.component.html',
   styleUrls: ['./integrateds-list.component.scss']
 })
 export class IntegratedListComponent implements OnInit, Filterable<any> {
-  dataSource: any[];
+  dataSource: Integracao[] = [];
   pageInfo: PageInfo;
 
   filters: SearchOption[] = [];
@@ -21,13 +23,21 @@ export class IntegratedListComponent implements OnInit, Filterable<any> {
     .description('Buscar por: "{0}"')
     .build();
 
-  constructor(private _service: FakeApiService) {}
+  constructor(private _service: IntegratedService) {}
 
   ngOnInit(): void {
-    this._service.getIntegratedOrganizations().subscribe(int => {
-      this.pageInfo = int.pageInfo;
-      this.dataSource = int.records;
-    });
+    this.nextPage();
+  }
+
+  nextPage() {
+    const hasNext = this.pageInfo ? this.pageInfo.hasNext : true;
+    const pageIndex = this.pageInfo ? this.pageInfo.pageIndex + 1 : 0;
+    if (hasNext) {
+      this._service.getPaginated(30, pageIndex).subscribe(results => {
+        this.pageInfo = results.pageInfo;
+        this.dataSource = this.dataSource.concat(results.records.map(int => new Integracao(int)));
+      });
+    }
   }
 
   hackings() {
@@ -71,6 +81,4 @@ export class IntegratedListComponent implements OnInit, Filterable<any> {
       this.nextPage();
     }
   }
-
-  nextPage() {}
 }

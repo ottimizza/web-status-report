@@ -1,4 +1,5 @@
 import { Input, Component } from '@angular/core';
+import { Integracao } from '@shared/models/Integracao';
 
 @Component({
   selector: 'app-integration',
@@ -16,5 +17,5 @@ import { Input, Component } from '@angular/core';
   ]
 })
 export class IntegratedCompanyComponent {
-  @Input() integration: any;
+  @Input() integration: Integracao;
 }

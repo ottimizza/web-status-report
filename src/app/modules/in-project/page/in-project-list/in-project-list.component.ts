@@ -4,7 +4,7 @@ import { SearchRule } from '@shared/components/search/models/SearchRule';
 import { SearchOption } from '@shared/components/search/models/SearchOption';
 import { Filterable } from '@shared/models/Filterable';
 import { FakeApiService } from '@app/http/fake-api.serive';
-import { InProjectCompany } from '@shared/models/InProject';
+import { Integracao } from '@shared/models/Integracao';
 import { InProjectService } from '@shared/services/in-project.service';
 import { PageInfo } from '@shared/models/GenericPageableResponse';
 import { ToastService } from '@app/services/toast.service';
@@ -15,7 +15,7 @@ import { MatSnackBar } from '@angular/material';
   styleUrls: ['in-project-list.component.scss']
 })
 export class InProjectListComponent implements OnInit, Filterable<any> {
-  dataSource: InProjectCompany[] = [];
+  dataSource: Integracao[] = [];
   pageInfo: PageInfo;
 
   filters: SearchOption[] = [];
@@ -37,7 +37,7 @@ export class InProjectListComponent implements OnInit, Filterable<any> {
     if (hasNext) {
       this.service.getCompanys(30, pageIndex).subscribe(results => {
         this.dataSource = this.dataSource.concat(
-          results.records.map(company => new InProjectCompany(company))
+          results.records.map(company => new Integracao(company))
         );
         this.pageInfo = results.pageInfo;
       });
@@ -60,6 +60,7 @@ export class InProjectListComponent implements OnInit, Filterable<any> {
 
     return [
       builder('codigo_empresa_erp__c', /(erp)\:\s(?<value>.+)/gi, 'Código ERP'),
+      builder('id', /(id)\:\s(?<value>.+)/gi, 'Id'),
       builder('name', /(integracao)\:\s(?<value>.+)/gi, 'Integração'),
       builder('name', /(integracão)\:\s(?<value>.+)/gi, 'Integração'),
       builder('name', /(integraçao)\:\s(?<value>.+)/gi, 'Integração'),
@@ -68,7 +69,6 @@ export class InProjectListComponent implements OnInit, Filterable<any> {
       builder('status_resumido__c', /(status)\:\s(?<value>.+)/gi, 'Status do projeto'),
       builder('o_que_foi_feito_hoje__c', /(ultima)\:\s(?<value>.+)/gi, 'Última ação'),
       builder('o_que_foi_feito_hoje__c', /(última)\:\s(?<value>.+)/gi, 'Última ação'),
-      builder('proximo_passo__c', /(pendente)\:\s(?<value>.+)/gi, 'Ação pendente'),
       builder('envolvidos__c', /(responsável)\:\s(?<value>.+)/gi, 'Responsáveis'),
       builder('envolvidos__c', /(responsavel)\:\s(?<value>.+)/gi, 'Responsáveis'),
       builder('envolvidos__c', /(responsáveis)\:\s(?<value>.+)/gi, 'Responsáveis'),
