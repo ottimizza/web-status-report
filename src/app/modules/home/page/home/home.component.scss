@@ -1,0 +1,16 @@
+.row .text-center {
+  margin-bottom: 1rem;
+}
+
+.card-body {
+  margin: 0 !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 767px) {
+  h1 {
+    font-size: calc(2.5vw + 2.5vh);
+  }
+}

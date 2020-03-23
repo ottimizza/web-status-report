@@ -12,7 +12,6 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { CoreModule } from '@app/core.module';
 import { ContentLayoutComponent } from './layout/content-layout/content-layout.component';
-import { SidebarLayoutComponent } from './layout/sidebar-layout/sidebar-layout.component';
 import { AuthLayoutComponent } from './layout/auth-layout/auth-layout.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NavbarLayoutComponent } from './layout/navbar-layout/navbar-layout.component';
@@ -28,6 +27,8 @@ import { DragDropDirective } from '@shared/directives/drag-drop.directive';
 import { DocPipe } from '@shared/pipes/doc.pipe';
 import { PipesModule } from '@shared/pipes/pipes.module';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { SidebarLayoutComponent } from './layout/sidebar-layout/sidebar-layout.component';
+import { MatSnackBarModule } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -68,7 +69,8 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
     BrandModule,
     BreadcrumbModule,
 
-    MatDialogModule
+    MatDialogModule,
+    MatSnackBarModule
   ],
   providers: [ErrorInterceptorProvider],
   bootstrap: [AppComponent],

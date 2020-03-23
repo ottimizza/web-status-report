@@ -16,10 +16,7 @@ export class ToastService {
 
   constructor(public snackbar: MatSnackBar) {}
 
-  public show(
-    message: string,
-    color?: 'primary' | 'success' | 'danger' | 'warning'
-  ) {
+  public show(message: string, color?: 'primary' | 'success' | 'danger' | 'warning') {
     this.snackbar.open(message, '', {
       duration: 3000,
       verticalPosition: 'top',
@@ -41,6 +38,10 @@ export class ToastService {
       verticalPosition: 'bottom',
       horizontalPosition: 'left'
     });
+  }
+
+  public waitingResponse(): void {
+    this.showSnack('Aguardando resposta');
   }
 
   public hideSnack(): void {

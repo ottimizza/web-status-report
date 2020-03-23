@@ -1,0 +1,30 @@
+<div class="scroll-container" appScrollTracker (scrollEnd)="nextPage()">
+  <app-breadcrumb></app-breadcrumb>
+
+  <div class="mt-2 p-4">
+
+    <app-complex-search-input
+      [hackings]="hackings()"
+      [defaultRule]="defaultRule"
+      (filterApplied)="filterApply($event)"
+    ></app-complex-search-input>
+    <div class="mb-4" *ngIf="filters && filters.length">
+      <mat-chip-list>
+        <mat-chip *ngFor="let chip of filters" [selectable]="true" [removable]="true" (removed)="removeFilter(chip)">
+          {{ chip.description }}
+          <mat-icon matChipRemove>cancel</mat-icon>
+        </mat-chip>
+      </mat-chip-list>
+    </div>
+
+    <div class="row m-1 w-100 p-0 d-inline-block">
+      <h4 class="float-left">Projetos</h4>
+      <h4 class="float-right mr-4 cursor-pointer"><i class="fa fa-sort-amount-down"></i></h4>
+    </div>
+
+    <div>
+      <app-project-card *ngFor="let project of dataSource" [project]="project"></app-project-card>
+    </div>
+
+  </div>
+</div>
