@@ -20,8 +20,8 @@ export class InProjectListComponent implements OnInit, Filterable<Integracao> {
   filters: SearchOption[] = [];
   defaultRule = SearchRule.builder()
     .id('default')
-    .value({ company: '' })
-    .description('Procurar por: "{0}"')
+    .value({ name: '' })
+    .description('Nome da empresa: "{0}"')
     .build();
 
   sortInfo: any = null;
@@ -33,11 +33,22 @@ export class InProjectListComponent implements OnInit, Filterable<Integracao> {
   }
 
   nextPage() {
-    this.toast.waitingResponse();
-    const hasNext = this.pageInfo ? this.pageInfo.hasNext : true;
     const pageIndex = this.pageInfo ? this.pageInfo.pageIndex + 1 : 0;
+    const hasNext = this.pageInfo?.hasNext ?? true;
+
+    const pageCriteria = { pageIndex, pageSize: 30 };
+
+    let filters = {};
+    this.filters.forEach(filter => (filters = Object.assign(filters, filter.value)));
+
+    const searchCriteria = Object.assign(filters, pageCriteria);
+
     if (hasNext) {
-      this.service.getCompanys(30, pageIndex).subscribe(results => {
+      this.toast.waitingResponse();
+      this.service.getCompanys(searchCriteria).subscribe(results => {
+        if (pageIndex === 0) {
+          this.dataSource = [];
+        }
         this.dataSource = this.dataSource.concat(
           results.records.map(company => new Integracao(company))
         );
@@ -48,8 +59,12 @@ export class InProjectListComponent implements OnInit, Filterable<Integracao> {
   }
 
   filterApply(event: SearchOption) {
+    const filters = this.filters.map(filter => filter.id);
+    if (filters.includes(event.id)) {
+      this.filters.splice(filters.indexOf(event.id), 1);
+    }
     this.filters.push(event);
-    console.log(event);
+    this.fetch();
   }
 
   hackings() {
@@ -102,5 +117,8 @@ export class InProjectListComponent implements OnInit, Filterable<Integracao> {
     this.fetch();
   }
 
-  fetch() {}
+  fetch() {
+    this.pageInfo = null;
+    this.nextPage();
+  }
 }

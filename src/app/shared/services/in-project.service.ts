@@ -16,10 +16,9 @@ export class InProjectService {
   constructor(private http: HttpClient, private auth: AuthenticationService) {}
 
   public getCompanys(
-    pageSize: number,
-    pageIndex: number
+    searchCriteria: any
   ): Observable<GenericPageableResponse<IntegracaoSalesForce>> {
-    const url = `${BASE_URL}/api/empresa/projeto?pageSize=${pageSize}&pageIndex=${pageIndex}`;
+    const url = `${BASE_URL}/api/empresa/projeto?${this._encode(searchCriteria)}`;
     return this.http.get<GenericPageableResponse<IntegracaoSalesForce>>(url, this._headers);
   }
 
@@ -31,6 +30,14 @@ export class InProjectService {
   public getCount() {
     const url = `${BASE_URL}/api/empresa/projeto/quantidade`;
     return this.http.get<GenericResponse<number>>(url, this._headers);
+  }
+
+  private _encode(params: any): string {
+    return Object.keys(params)
+      .map(key => {
+        return [key, params[key]].map(encodeURIComponent).join('=');
+      })
+      .join('&');
   }
 
   private get _headers() {
