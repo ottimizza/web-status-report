@@ -7,7 +7,6 @@ import { Integracao } from '@shared/models/Integracao';
 import { InProjectService } from '@shared/services/in-project.service';
 import { PageInfo } from '@shared/models/GenericPageableResponse';
 import { ToastService } from '@app/services/toast.service';
-import { Sort } from '@angular/material';
 
 @Component({
   templateUrl: './in-project-list.component.html',
