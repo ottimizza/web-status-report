@@ -28,6 +28,7 @@ import { DocPipe } from '@shared/pipes/doc.pipe';
 import { PipesModule } from '@shared/pipes/pipes.module';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { SidebarLayoutComponent } from './layout/sidebar-layout/sidebar-layout.component';
+import { MatSnackBarModule } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -68,7 +69,8 @@ import { SidebarLayoutComponent } from './layout/sidebar-layout/sidebar-layout.c
     BrandModule,
     BreadcrumbModule,
 
-    MatDialogModule
+    MatDialogModule,
+    MatSnackBarModule
   ],
   providers: [ErrorInterceptorProvider],
   bootstrap: [AppComponent],

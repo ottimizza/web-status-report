@@ -2,14 +2,16 @@ export class IntegracaoSalesForce {
   codigo_empresa_erp__c: string;
   envolvidos__c: unknown;
   id: number;
+  lotes_processados__c: number;
   name: string;
   nome_contabilidade__c: string;
   nome_resumido__c: string;
   o_que_foi_feito_hoje__c: unknown;
   proximo_passo__c: string;
-  resumo_prox_passo__c: unknown;
+  resumo_prox_passo__c: string;
   status_report_data__c: string;
   status_resumido__c: string;
+  ultimo_lote_processado__c: string;
 }
 
 export class Integracao {
@@ -25,6 +27,8 @@ export class Integracao {
     this.resumoProximoPasso = salesForceObj.resumo_prox_passo__c;
     this.statusReportData = new Date(salesForceObj.status_report_data__c);
     this.statusResumido = salesForceObj.status_resumido__c;
+    this.lotesProcessados = salesForceObj.lotes_processados__c;
+    this.ultimoLoteProcessados = new Date(salesForceObj.ultimo_lote_processado__c);
   }
 
   public codigoErp: string;
@@ -35,7 +39,9 @@ export class Integracao {
   public nomeResumido: string;
   public feitoHoje: unknown;
   public proximoPasso: Date;
-  public resumoProximoPasso: unknown;
+  public resumoProximoPasso: string;
   public statusReportData: Date;
   public statusResumido: string;
+  public lotesProcessados: number;
+  public ultimoLoteProcessados: Date;
 }

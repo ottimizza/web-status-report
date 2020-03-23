@@ -9,7 +9,7 @@
       [defaultRule]="defaultRule"
       (filterApplied)="filterApply($event)"
     ></app-complex-search-input>
-    <div class="mb-4" *ngIf="dataSource && dataSource.length">
+    <div class="mb-4" *ngIf="filters && filters.length">
       <mat-chip-list>
         <mat-chip *ngFor="let chip of filters" [selectable]="true" [removable]="true" (removed)="removeFilter(chip)">
           {{ chip.description }}

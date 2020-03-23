@@ -9,5 +9,4 @@ export interface Filterable<T> {
   filterApply(event: SearchOption): void;
   removeFilter(filter: SearchOption): void;
   hackings(): HackingRule[];
-  fetch(): void;
 }
