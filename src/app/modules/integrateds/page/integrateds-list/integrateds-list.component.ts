@@ -99,6 +99,10 @@ export class IntegratedListComponent implements OnInit, Filterable<Integracao> {
   }
 
   filterApply(event: SearchOption) {
+    const filters = this.filters.map(filter => filter.id);
+    if (filters.includes(event.id)) {
+      this.filters.splice(filters.indexOf(event.id), 1);
+    }
     this.filters.push(event);
     this.fetch();
   }
