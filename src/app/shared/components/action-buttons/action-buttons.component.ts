@@ -13,7 +13,6 @@ export class ActionButton {
     | 'btn-warning'
     | 'btn-info'
     | 'btn-light'
-    | 'btn-link'
     | 'btn-dark'
     | 'btn-link';
 }

@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { AuthenticationService } from '@app/authentication/authentication.service';
 import { GenericPageableResponse } from '@shared/models/GenericPageableResponse';
 import { GenericResponse } from '@shared/models/GenericResponse';
-import { Integracao, IntegracaoSalesForce } from '@shared/models/Integracao';
+import { IntegracaoSalesForce } from '@shared/models/Integracao';
 
 const BASE_URL = environment.storageBaseUrl;
 
@@ -19,9 +19,17 @@ export class IntegratedService {
     return this.http.get<GenericResponse<number>>(url, this._headers);
   }
 
-  public getPaginated(pageSize: number, pageIndex: number) {
-    const url = `${BASE_URL}/api/empresa/integrado?pageSize=${pageSize}&pageIndex=${pageIndex}`;
+  public getPaginated(searchCriteria: any) {
+    const url = `${BASE_URL}/api/empresa/integrado?${this._encode(searchCriteria)}`;
     return this.http.get<GenericPageableResponse<IntegracaoSalesForce>>(url, this._headers);
+  }
+
+  private _encode(params: any): string {
+    return Object.keys(params)
+      .map(key => {
+        return [key, params[key]].map(encodeURIComponent).join('=');
+      })
+      .join('&');
   }
 
   private get _headers() {

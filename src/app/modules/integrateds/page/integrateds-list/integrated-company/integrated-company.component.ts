@@ -1,5 +1,6 @@
 import { Input, Component } from '@angular/core';
 import { Integracao } from '@shared/models/Integracao';
+import { DateUtils } from '@shared/utils/date.utils';
 
 @Component({
   selector: 'app-integration',
@@ -18,4 +19,8 @@ import { Integracao } from '@shared/models/Integracao';
 })
 export class IntegratedCompanyComponent {
   @Input() integration: Integracao;
+
+  get date() {
+    return DateUtils.getDateString(this.integration.ultimoLoteProcessados);
+  }
 }
