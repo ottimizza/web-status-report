@@ -8,12 +8,36 @@ import { PageInfo } from '@shared/models/GenericPageableResponse';
 import { ToastService } from '@app/services/toast.service';
 import { Integracao } from '@shared/models/Integracao';
 import { Filterable } from '@shared/models/Filterable';
+import { SortingOption } from '@shared/components/sorting/sorting.component';
 
 @Component({
   templateUrl: './integrateds-list.component.html',
   styleUrls: ['./integrateds-list.component.scss']
 })
 export class IntegratedListComponent implements OnInit, Filterable<Integracao> {
+  sortingOptions: SortingOption[] = [
+    {
+      icon: 'fa fa-building',
+      title: 'Nome',
+      id: 'name'
+    },
+    {
+      icon: 'fa fa-qrcode',
+      title: 'Código ERP',
+      id: 'id'
+    },
+    {
+      icon: 'fa fa-calendar-alt',
+      title: 'Data do último lote',
+      id: 'ultimo_lote_processado__c'
+    },
+    {
+      icon: 'fa fa-boxes',
+      title: 'Total de lotes processados',
+      id: 'lotes_processados__c'
+    }
+  ];
+
   dataSource: Integracao[] = [];
   pageInfo: PageInfo;
 
