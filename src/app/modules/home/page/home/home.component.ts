@@ -20,9 +20,13 @@ export class HomeComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.inProjectService.getCount().subscribe(result => (this.inProjectCount = result.record));
-    this.integratedService.getCount().subscribe(result => (this.integratedCount = result.record));
-    this.loteService.getCount().subscribe(result => (this.reportCount = result.record));
+    this.inProjectService
+      .getCount()
+      .subscribe(result => (this.inProjectCount = result.record ?? 0));
+    this.integratedService
+      .getCount()
+      .subscribe(result => (this.integratedCount = result.record ?? 0));
+    this.loteService.getCount().subscribe(result => (this.reportCount = result.record ?? 0));
   }
 
   toValue(num: number) {
