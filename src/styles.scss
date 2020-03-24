@@ -91,6 +91,10 @@ body {
   width: 240px !important;
 }
 
+.show-sidebar .main-wrapper {
+  width: calc(100% - 240px);
+}
+
 /* ******************************************** *
  * * * * * * * * *  SIDEBAR * * * * * * * * * * *
  * ******************************************** */
@@ -222,7 +226,8 @@ $full-sidebar-width: 240px;
 }
 @media (min-width: 1170px) {
   .main-wrapper {
-    width: calc(100vw - 240px);
+    width: calc(100vw - 70px);
+    margin-left: 70px;
     // margin-left: $full-sidebar-width;
   }
   .mini-sidebar {

@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { PageInfo } from '@shared/models/GenericPageableResponse';
+
+import { SearchOption } from '@shared/components/search/models/SearchOption';
 import { HackingRule } from '@shared/components/search/models/HackingRule';
 import { SearchRule } from '@shared/components/search/models/SearchRule';
-import { SearchOption } from '@shared/components/search/models/SearchOption';
-import { Filterable } from '@shared/models/Filterable';
 import { IntegratedService } from '@shared/services/integrated.service';
-import { Integracao } from '@shared/models/Integracao';
+import { PageInfo } from '@shared/models/GenericPageableResponse';
 import { ToastService } from '@app/services/toast.service';
+import { Integracao } from '@shared/models/Integracao';
+import { Filterable } from '@shared/models/Filterable';
 
 @Component({
   templateUrl: './integrateds-list.component.html',
