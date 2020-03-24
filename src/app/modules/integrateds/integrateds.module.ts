@@ -7,6 +7,7 @@ import { ComplexSearchModule } from '@shared/components/search/complex-search.mo
 import { MatChipsModule, MatIconModule, MatSnackBar, MatSnackBarModule } from '@angular/material';
 import { IntegratedCompanyComponent } from './page/integrateds-list/integrated-company/integrated-company.component';
 import { ScrollTrackerModule } from '@shared/directives/scroll-tracker.module';
+import { SortingModule } from '@shared/components/sorting/sorting.module';
 
 @NgModule({
   declarations: [IntegratedListComponent, IntegratedCompanyComponent],
@@ -18,7 +19,8 @@ import { ScrollTrackerModule } from '@shared/directives/scroll-tracker.module';
     MatChipsModule,
     MatIconModule,
     ScrollTrackerModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    SortingModule
   ]
 })
 export class IntegratedModule {}

@@ -8,12 +8,36 @@ import { PageInfo } from '@shared/models/GenericPageableResponse';
 import { ToastService } from '@app/services/toast.service';
 import { Filterable } from '@shared/models/Filterable';
 import { Integracao } from '@shared/models/Integracao';
+import { SortingOption } from '@shared/components/sorting/sorting.component';
 
 @Component({
   templateUrl: './in-project-list.component.html',
   styleUrls: ['in-project-list.component.scss']
 })
 export class InProjectListComponent implements OnInit, Filterable<Integracao> {
+  sortingOptions: SortingOption[] = [
+    {
+      icon: 'fa fa-building',
+      title: 'Nome',
+      id: 'name'
+    },
+    {
+      icon: 'fa fa-qrcode',
+      title: 'Código ERP',
+      id: 'id'
+    },
+    {
+      icon: 'fa fa-tags',
+      title: 'Status',
+      id: 'status_resumido__c'
+    },
+    {
+      icon: 'fa fa-calendar-alt',
+      title: 'Data',
+      id: 'status_report_data__c'
+    }
+  ];
+
   dataSource: Integracao[] = [];
   pageInfo: PageInfo;
 

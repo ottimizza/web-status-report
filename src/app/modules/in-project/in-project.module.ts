@@ -16,6 +16,7 @@ import { InProjectCardComponent } from './page/in-project-list/in-project-card/i
 import { RouterModule } from '@angular/router';
 import { ActionButtonsModule } from '@shared/components/action-buttons/action-buttons.module';
 import { ScrollTrackerModule } from '@shared/directives/scroll-tracker.module';
+import { SortingModule } from '@shared/components/sorting/sorting.module';
 
 @NgModule({
   declarations: [InProjectListComponent, InProjectCompanyComponent, InProjectCardComponent],
@@ -30,7 +31,8 @@ import { ScrollTrackerModule } from '@shared/directives/scroll-tracker.module';
     RouterModule,
     ActionButtonsModule,
     ScrollTrackerModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    SortingModule
   ]
 })
 export class InProjectModule {}

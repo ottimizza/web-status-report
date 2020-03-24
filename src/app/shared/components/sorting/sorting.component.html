@@ -1,0 +1,11 @@
+<h4 [matMenuTriggerFor]="sortingmenu" class="float-right mr-4 cursor-pointer"><i class="fa fa-sort-amount-down"></i></h4>
+
+<mat-menu #sortingmenu="matMenu">
+  <div>
+    <strong class="m-5 text-center">Ordenar por:</strong>
+    <a *ngFor="let opt of options" mat-menu-item (click)="devolve(opt.id)" [ngClass]="{ 'text-primary': selected === opt.id }">
+      <i [class]="opt.icon"></i>&nbsp;&nbsp;
+      <span>{{ opt.title }}</span>
+    </a>
+  </div>
+</mat-menu>
