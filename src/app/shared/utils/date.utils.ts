@@ -1,5 +1,5 @@
 export class DateUtils {
-  public static ymdToDmy(date: string) {
+  public static getBRDate(date: string) {
     if (date.length !== 10) {
       throw new Error(
         'The date passed to the method DateUtils.ymdToDmy() is not in the formate yyyy-mm-dd'
@@ -15,7 +15,7 @@ export class DateUtils {
     }
   }
 
-  public static ymdToCompetence(date: string) {
+  public static competenceFromUSDate(date: string) {
     const dates = date.split('-');
     return `${dates[1]}/${dates[0]}`;
   }
