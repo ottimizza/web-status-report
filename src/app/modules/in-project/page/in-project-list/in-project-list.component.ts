@@ -24,7 +24,7 @@ export class InProjectListComponent implements OnInit, Filterable<Integracao> {
     {
       icon: 'fa fa-qrcode',
       title: 'Código ERP',
-      id: 'id'
+      id: 'codigo_empresa_erp__c'
     },
     {
       icon: 'fa fa-tags',
@@ -37,6 +37,7 @@ export class InProjectListComponent implements OnInit, Filterable<Integracao> {
       id: 'status_report_data__c'
     }
   ];
+  sortingAtribute = { sortBy: 'name' };
 
   dataSource: Integracao[] = [];
   pageInfo: PageInfo;
@@ -66,6 +67,8 @@ export class InProjectListComponent implements OnInit, Filterable<Integracao> {
     this.filters.forEach(filter => (filters = Object.assign(filters, filter.value)));
 
     const searchCriteria = Object.assign(filters, pageCriteria);
+
+    Object.assign(searchCriteria, this.sortingAtribute);
 
     if (hasNext) {
       this.toast.waitingResponse();
@@ -144,5 +147,10 @@ export class InProjectListComponent implements OnInit, Filterable<Integracao> {
   fetch() {
     this.pageInfo = null;
     this.nextPage();
+  }
+
+  onSort(event: { sortBy: string }) {
+    this.sortingAtribute = event;
+    this.fetch();
   }
 }

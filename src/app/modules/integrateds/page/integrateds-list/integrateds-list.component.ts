@@ -24,7 +24,7 @@ export class IntegratedListComponent implements OnInit, Filterable<Integracao> {
     {
       icon: 'fa fa-qrcode',
       title: 'Código ERP',
-      id: 'id'
+      id: 'codigo_empresa_erp__c'
     },
     {
       icon: 'fa fa-calendar-alt',
@@ -37,6 +37,7 @@ export class IntegratedListComponent implements OnInit, Filterable<Integracao> {
       id: 'lotes_processados__c'
     }
   ];
+  sortingAtribute = { sortBy: 'name' };
 
   dataSource: Integracao[] = [];
   pageInfo: PageInfo;
@@ -64,6 +65,8 @@ export class IntegratedListComponent implements OnInit, Filterable<Integracao> {
     this.filters.forEach(filter => (filters = Object.assign(filters, filter.value)));
 
     const searchCriteria = Object.assign(filters, pageCriteria);
+
+    Object.assign(searchCriteria, this.sortingAtribute);
 
     if (hasNext) {
       this._toast.waitingResponse();
@@ -140,6 +143,11 @@ export class IntegratedListComponent implements OnInit, Filterable<Integracao> {
   fetch() {
     this.pageInfo = null;
     this.nextPage();
+  }
+
+  onSort(event: { sortBy: string }) {
+    this.sortingAtribute = event;
+    this.fetch();
   }
 
   onScroll(event: boolean) {

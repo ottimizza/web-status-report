@@ -19,7 +19,7 @@
 
     <div class="row m-1 w-100 p-0 d-inline-block">
       <h4 class="float-left">Projetos</h4>
-      <app-sort [options]="sortingOptions"></app-sort>
+      <app-sort [options]="sortingOptions" (sort)="onSort($event)"></app-sort>
     </div>
 
     <div>
