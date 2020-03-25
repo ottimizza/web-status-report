@@ -102,6 +102,7 @@ export class IntegratedListComponent implements OnInit, Filterable<Integracao> {
       builder('name', /(integração)\:\s(?<value>.+)/gi, 'Nome da empresa', { name: '' }),
       builder('name', /(empresa)\:\s(?<value>.+)/gi, 'Nome da empresa', { name: '' }),
       builder('name', /(nome)\:\s(?<value>.+)/gi, 'Nome da empresa', { name: '' }),
+      builder('name', /(empresa)\:\s(?<value>.+)/gi, 'Nome da empresa', { name: '' }),
       builder('status_resumido__c', /(status)\:\s(?<value>.+)/gi, 'Status do projeto', {
         status_resumido__c: ''
       }),

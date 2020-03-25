@@ -16,6 +16,7 @@ import { AvatarModule } from '@shared/components/avatar/avatar.module';
 import { NavbarLayoutComponent } from './navbar-layout.component';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { BrandModule } from '@shared/components/brand/brand.module';
 
 @NgModule({
   declarations: [NavbarLayoutComponent],
@@ -24,7 +25,8 @@ import { RouterModule } from '@angular/router';
     CommonModule,
     RouterModule,
     AvatarModule,
-    MatMenuModule
+    MatMenuModule,
+    BrandModule
   ],
   exports: [NavbarLayoutComponent],
   providers: [],

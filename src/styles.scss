@@ -93,6 +93,7 @@ body {
 
 .show-sidebar .main-wrapper {
   width: calc(100% - 240px);
+  margin-left: 240px;
 }
 
 /* ******************************************** *
@@ -171,6 +172,10 @@ $full-sidebar-width: 240px;
 }
 
 @media (max-width: 767px) {
+  .show-sidebar .main-wrapper {
+    width: 100%;
+    margin-left: 0;
+  }
   .main-wrapper {
     width: 100vw;
     margin: 0;
