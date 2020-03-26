@@ -1,6 +1,6 @@
 <div class="border-top pt-3 pb-2 integration-card">
   <h5 class="text-primary"><span>{{ '(' + integration.codigoErp + ') ' + integration.name }}</span></h5>
-  <div class="d-block">
+  <div class="d-block" *ngIf="integration.lotesProcessados">
     <span>Último lote processado: </span><strong>{{ date }}</strong>
   </div>
   <span>Total de lançamentos processados: </span><strong>{{ integration.lotesProcessados }}</strong>
