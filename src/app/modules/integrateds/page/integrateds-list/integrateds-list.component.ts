@@ -1,18 +1,44 @@
 import { Component, OnInit } from '@angular/core';
-import { PageInfo } from '@shared/models/GenericPageableResponse';
+
+import { SearchOption } from '@shared/components/search/models/SearchOption';
 import { HackingRule } from '@shared/components/search/models/HackingRule';
 import { SearchRule } from '@shared/components/search/models/SearchRule';
-import { SearchOption } from '@shared/components/search/models/SearchOption';
-import { Filterable } from '@shared/models/Filterable';
 import { IntegratedService } from '@shared/services/integrated.service';
-import { Integracao } from '@shared/models/Integracao';
+import { PageInfo } from '@shared/models/GenericPageableResponse';
 import { ToastService } from '@app/services/toast.service';
+import { Integracao } from '@shared/models/Integracao';
+import { Filterable } from '@shared/models/Filterable';
+import { SortingOption } from '@shared/components/sorting/sorting.component';
 
 @Component({
   templateUrl: './integrateds-list.component.html',
   styleUrls: ['./integrateds-list.component.scss']
 })
 export class IntegratedListComponent implements OnInit, Filterable<Integracao> {
+  sortingOptions: SortingOption[] = [
+    {
+      icon: 'fa fa-building',
+      title: 'Nome',
+      id: 'name'
+    },
+    {
+      icon: 'fa fa-qrcode',
+      title: 'Código ERP',
+      id: 'codigo_empresa_erp__c'
+    },
+    {
+      icon: 'fa fa-calendar-alt',
+      title: 'Data do último lote',
+      id: 'ultimo_lote_processado__c'
+    },
+    {
+      icon: 'fa fa-boxes',
+      title: 'Total de lotes processados',
+      id: 'lotes_processados__c'
+    }
+  ];
+  sortingAtribute = { sortBy: 'name' };
+
   dataSource: Integracao[] = [];
   pageInfo: PageInfo;
 
@@ -39,6 +65,8 @@ export class IntegratedListComponent implements OnInit, Filterable<Integracao> {
     this.filters.forEach(filter => (filters = Object.assign(filters, filter.value)));
 
     const searchCriteria = Object.assign(filters, pageCriteria);
+
+    Object.assign(searchCriteria, this.sortingAtribute);
 
     if (hasNext) {
       this._toast.waitingResponse();
@@ -74,6 +102,7 @@ export class IntegratedListComponent implements OnInit, Filterable<Integracao> {
       builder('name', /(integração)\:\s(?<value>.+)/gi, 'Nome da empresa', { name: '' }),
       builder('name', /(empresa)\:\s(?<value>.+)/gi, 'Nome da empresa', { name: '' }),
       builder('name', /(nome)\:\s(?<value>.+)/gi, 'Nome da empresa', { name: '' }),
+      builder('name', /(empresa)\:\s(?<value>.+)/gi, 'Nome da empresa', { name: '' }),
       builder('status_resumido__c', /(status)\:\s(?<value>.+)/gi, 'Status do projeto', {
         status_resumido__c: ''
       }),
@@ -115,6 +144,11 @@ export class IntegratedListComponent implements OnInit, Filterable<Integracao> {
   fetch() {
     this.pageInfo = null;
     this.nextPage();
+  }
+
+  onSort(event: { sortBy: string }) {
+    this.sortingAtribute = event;
+    this.fetch();
   }
 
   onScroll(event: boolean) {

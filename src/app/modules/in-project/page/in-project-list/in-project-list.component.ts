@@ -1,18 +1,44 @@
 import { Component, OnInit } from '@angular/core';
+
+import { SearchOption } from '@shared/components/search/models/SearchOption';
 import { HackingRule } from '@shared/components/search/models/HackingRule';
 import { SearchRule } from '@shared/components/search/models/SearchRule';
-import { SearchOption } from '@shared/components/search/models/SearchOption';
-import { Filterable } from '@shared/models/Filterable';
-import { Integracao } from '@shared/models/Integracao';
 import { InProjectService } from '@shared/services/in-project.service';
 import { PageInfo } from '@shared/models/GenericPageableResponse';
 import { ToastService } from '@app/services/toast.service';
+import { Filterable } from '@shared/models/Filterable';
+import { Integracao } from '@shared/models/Integracao';
+import { SortingOption } from '@shared/components/sorting/sorting.component';
 
 @Component({
   templateUrl: './in-project-list.component.html',
   styleUrls: ['in-project-list.component.scss']
 })
 export class InProjectListComponent implements OnInit, Filterable<Integracao> {
+  sortingOptions: SortingOption[] = [
+    {
+      icon: 'fa fa-building',
+      title: 'Nome',
+      id: 'name'
+    },
+    {
+      icon: 'fa fa-qrcode',
+      title: 'Código ERP',
+      id: 'codigo_empresa_erp__c'
+    },
+    {
+      icon: 'fa fa-tags',
+      title: 'Status',
+      id: 'status_resumido__c'
+    },
+    {
+      icon: 'fa fa-calendar-alt',
+      title: 'Data',
+      id: 'status_report_data__c'
+    }
+  ];
+  sortingAtribute = { sortBy: 'name' };
+
   dataSource: Integracao[] = [];
   pageInfo: PageInfo;
 
@@ -41,6 +67,8 @@ export class InProjectListComponent implements OnInit, Filterable<Integracao> {
     this.filters.forEach(filter => (filters = Object.assign(filters, filter.value)));
 
     const searchCriteria = Object.assign(filters, pageCriteria);
+
+    Object.assign(searchCriteria, this.sortingAtribute);
 
     if (hasNext) {
       this.toast.waitingResponse();
@@ -119,5 +147,10 @@ export class InProjectListComponent implements OnInit, Filterable<Integracao> {
   fetch() {
     this.pageInfo = null;
     this.nextPage();
+  }
+
+  onSort(event: { sortBy: string }) {
+    this.sortingAtribute = event;
+    this.fetch();
   }
 }

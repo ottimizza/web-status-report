@@ -20,7 +20,7 @@
 
     <div class="row m-1 w-100 p-0 d-inline-block">
       <h4 class="float-left">Integrações</h4>
-      <h4 class="float-right mr-4 cursor-pointer"><i class="fa fa-sort-amount-down"></i></h4>
+      <app-sort [options]="sortingOptions" (sort)="onSort($event)"></app-sort>
     </div>
     <div>
       <app-integration *ngFor="let integration of dataSource" [integration]="integration"></app-integration>
