@@ -9,16 +9,14 @@ import { MatMenuModule } from '@angular/material/menu';
  * Shared Components
  * ********************************************************************************* */
 import { AvatarModule } from '@shared/components/avatar/avatar.module';
-import { BrandModule } from '@shared/components/brand/brand.module';
 
 /* ********************************************************************************* *
  * Exported Components
  * ********************************************************************************* */
 import { NavbarLayoutComponent } from './navbar-layout.component';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { MatDialogModule } from '@angular/material/dialog';
+import { BrandModule } from '@shared/components/brand/brand.module';
 
 @NgModule({
   declarations: [NavbarLayoutComponent],
@@ -27,9 +25,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     CommonModule,
     RouterModule,
     AvatarModule,
-    BrandModule,
     MatMenuModule,
-    MatDialogModule
+    BrandModule
   ],
   exports: [NavbarLayoutComponent],
   providers: [],

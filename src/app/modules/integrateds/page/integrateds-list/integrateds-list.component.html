@@ -1,0 +1,30 @@
+
+<div class="scroll-container" appScrollTracker (scrollEnd)="onScroll($event)">
+  <app-breadcrumb></app-breadcrumb>
+
+  <div class="mt-2 p-4">
+
+    <app-complex-search-input
+      [hackings]="hackings()"
+      [defaultRule]="defaultRule"
+      (filterApplied)="filterApply($event)"
+    ></app-complex-search-input>
+    <div class="mb-4" *ngIf="filters && filters.length">
+      <mat-chip-list>
+        <mat-chip *ngFor="let chip of filters" [selectable]="true" [removable]="true" (removed)="removeFilter(chip)">
+          {{ chip.description }}
+          <mat-icon matChipRemove>cancel</mat-icon>
+        </mat-chip>
+      </mat-chip-list>
+    </div>
+
+    <div class="row m-1 w-100 p-0 d-inline-block">
+      <h4 class="float-left">Integrações</h4>
+      <app-sort [options]="sortingOptions" (sort)="onSort($event)"></app-sort>
+    </div>
+    <div>
+      <app-integration *ngFor="let integration of dataSource" [integration]="integration"></app-integration>
+    </div>
+
+  </div>
+</div>

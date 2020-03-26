@@ -1,4 +1,4 @@
-@import "@angular/material/prebuilt-themes/deeppurple-amber.css";
+@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
 /* You can add global styles to this file, and also import other style files */
 /* Primary Styles */
 *,
@@ -63,7 +63,16 @@ body {
 }
 body {
   margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+}
+
+.text-bold {
+  font-weight: bold;
+}
+
+.scroll-container {
+  max-height: calc(100vh - 70px);
+  overflow: auto;
 }
 
 .navbar-brand {
@@ -76,6 +85,15 @@ body {
   height: calc(100% - 70px);
   overflow: auto;
   margin-top: 70px;
+}
+
+.show-sidebar .left-sidebar {
+  width: 240px !important;
+}
+
+.show-sidebar .main-wrapper {
+  width: calc(100% - 240px);
+  margin-left: 240px;
 }
 
 /* ******************************************** *
@@ -106,7 +124,7 @@ $full-sidebar-width: 240px;
 }
 .left-sidebar {
   position: absolute;
-  width: 240px;
+  width: $compact-sidebar-width;
   height: 100%;
   top: 0px;
   z-index: 20;
@@ -154,6 +172,14 @@ $full-sidebar-width: 240px;
 }
 
 @media (max-width: 767px) {
+  .show-sidebar .main-wrapper {
+    width: 100%;
+    margin-left: 0;
+  }
+  .main-wrapper {
+    width: 100vw;
+    margin: 0;
+  }
   .signin-as-navbar {
     display: none;
   }
@@ -174,6 +200,14 @@ $full-sidebar-width: 240px;
   }
 }
 @media (min-width: 768px) {
+  .show-sidebar .main-wrapper {
+    margin-left: 240px;
+    animation: ease 750ms;
+  }
+  .main-wrapper {
+    width: calc(100vw - 70px);
+    margin-left: $compact-sidebar-width;
+  }
   .mini-sidebar {
     .sidebar-toggler,
     .sidebar-overlay {
@@ -196,9 +230,14 @@ $full-sidebar-width: 240px;
   }
 }
 @media (min-width: 1170px) {
+  .main-wrapper {
+    width: calc(100vw - 70px);
+    margin-left: 70px;
+    // margin-left: $full-sidebar-width;
+  }
   .mini-sidebar {
     .left-sidebar {
-      width: $full-sidebar-width;
+      // width: $full-sidebar-width;
     }
     .signin-as-sidebar {
       display: none;

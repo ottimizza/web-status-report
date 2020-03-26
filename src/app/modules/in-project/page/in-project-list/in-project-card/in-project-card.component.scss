@@ -1,0 +1,29 @@
+.status {
+  color: #fff;
+  background-color: rgb(13, 138, 180);
+  padding: 1px 5px 1px 5px;
+  border-radius: 5px;
+}
+
+.content-field {
+  font-size: 16px;
+}
+
+.nowrap {
+  white-space: nowrap;
+}
+
+@media (max-width: 767px) {
+  .card-title,
+  .nowrap-container {
+    max-height: 70px;
+    max-width: 300px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+
+  .content-field {
+    font-size: 14px;
+  }
+}

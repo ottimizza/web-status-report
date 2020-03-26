@@ -4,24 +4,54 @@ import { Routes, RouterModule } from '@angular/router';
 import { AuthLayoutComponent } from './layout/auth-layout/auth-layout.component';
 import { ContentLayoutComponent } from './layout/content-layout/content-layout.component';
 
-import { AuthGuard } from '@app/guard/auth.guard';
 import { NoAuthGuard } from '@app/guard/no-auth.guard';
+import { AuthGuard } from '@app/guard/auth.guard';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'dashboard',
+    redirectTo: 'content',
     pathMatch: 'full'
   },
   {
-    path: 'dashboard',
-    data: {
-      breadcrumb: 'Dashboard'
-    },
+    path: 'content',
     component: ContentLayoutComponent,
-    canActivate: [NoAuthGuard], // Should be replaced with actual auth guard
-    children: []
+    canActivate: [AuthGuard], // Should be replaced with actual auth guard
+    data: {
+      breadcrumb: 'Início'
+    },
+    children: [
+      {
+        path: '',
+        redirectTo: 'home',
+        pathMatch: 'full'
+      },
+      {
+        path: 'home',
+        canActivate: [AuthGuard],
+        loadChildren: () => import('@modules/home/home.module').then(m => m.HomeModule)
+      },
+      {
+        path: 'integracoes',
+        canActivate: [AuthGuard],
+        data: {
+          breadcrumb: 'Integradas'
+        },
+        loadChildren: () =>
+          import('@modules/integrateds/integrateds.module').then(m => m.IntegratedModule)
+      },
+      {
+        path: 'projetos',
+        canActivate: [AuthGuard],
+        data: {
+          breadcrumb: 'Em Projeto'
+        },
+        loadChildren: () =>
+          import('@modules/in-project/in-project.module').then(m => m.InProjectModule)
+      }
+    ]
   },
+
   {
     path: 'auth',
     component: AuthLayoutComponent,

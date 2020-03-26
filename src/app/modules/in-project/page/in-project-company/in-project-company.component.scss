@@ -1,0 +1,34 @@
+input,
+textarea,
+.tag {
+  margin-top: 10px;
+  border-radius: 5px;
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 5px;
+  border: solid 1px rgb(206, 206, 206);
+  color: gray;
+}
+
+textarea {
+  height: 80px;
+}
+
+strong,
+span {
+  color: rgb(66, 66, 66);
+}
+
+.tag {
+  color: white;
+  background-color: #007aff;
+  padding: 6px;
+  // max-width: 300px;
+}
+
+.margin-13 {
+  height: 13px;
+}
