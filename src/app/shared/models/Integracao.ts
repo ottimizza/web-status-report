@@ -1,12 +1,12 @@
 export class IntegracaoSalesForce {
   codigo_empresa_erp__c: string;
-  envolvidos__c: unknown;
+  envolvidos__c: string;
   id: number;
   lotes_processados__c: number;
   name: string;
   nome_contabilidade__c: string;
   nome_resumido__c: string;
-  o_que_foi_feito_hoje__c: unknown;
+  o_que_foi_feito_hoje__c: string;
   proximo_passo__c: string;
   resumo_prox_passo__c: string;
   status_report_data__c: string;
@@ -32,12 +32,12 @@ export class Integracao {
   }
 
   public codigoErp: string;
-  public envolvidos: unknown;
+  public envolvidos: string;
   public id: number;
   public name: string;
   public nomeContabilidade: string;
   public nomeResumido: string;
-  public feitoHoje: unknown;
+  public feitoHoje: string;
   public proximoPasso: Date;
   public resumoProximoPasso: string;
   public statusReportData: Date;
