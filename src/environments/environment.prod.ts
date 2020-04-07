@@ -7,6 +7,7 @@ export const environment = {
   storageApplicationId: 'accounts-avatar',
   storageAccountingId: 'ottimizza',
   applicationId: 'ottimizza',
+  portalBaseUrl: '',
   firebase: {
     apiKey: 'AIzaSyDOGZiOJKcym5KFvhYZgjyNno8sgNPVKZA',
     authDomain: 'status-report-41706.firebaseapp.com',
