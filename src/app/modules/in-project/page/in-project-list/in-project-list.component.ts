@@ -51,10 +51,18 @@ export class InProjectListComponent implements OnInit, Filterable<Integracao> {
 
   sortInfo: any = null;
 
+  isFetching = false;
+
   constructor(private service: InProjectService, private toast: ToastService) {}
 
   ngOnInit(): void {
     this.nextPage();
+  }
+
+  onScroll() {
+    if (!this.isFetching) {
+      this.nextPage();
+    }
   }
 
   nextPage() {
@@ -71,8 +79,11 @@ export class InProjectListComponent implements OnInit, Filterable<Integracao> {
     Object.assign(searchCriteria, this.sortingAtribute);
 
     if (hasNext) {
+      this.isFetching = true;
       this.toast.waitingResponse();
       this.service.getCompanys(searchCriteria).subscribe(results => {
+        this.isFetching = false;
+
         if (pageIndex === 0) {
           this.dataSource = [];
         }

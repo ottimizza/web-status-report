@@ -49,6 +49,8 @@ export class IntegratedListComponent implements OnInit, Filterable<Integracao> {
     .description('Nome da empresa: "{0}"')
     .build();
 
+  isFetching = false;
+
   constructor(private _service: IntegratedService, private _toast: ToastService) {}
 
   ngOnInit(): void {
@@ -69,8 +71,10 @@ export class IntegratedListComponent implements OnInit, Filterable<Integracao> {
     Object.assign(searchCriteria, this.sortingAtribute);
 
     if (hasNext) {
+      this.isFetching = true;
       this._toast.waitingResponse();
       this._service.getPaginated(searchCriteria).subscribe(results => {
+        this.isFetching = false;
         this.pageInfo = results.pageInfo;
         if (pageIndex === 0) {
           this.dataSource = [];
@@ -152,7 +156,7 @@ export class IntegratedListComponent implements OnInit, Filterable<Integracao> {
   }
 
   onScroll(event: boolean) {
-    if (this.pageInfo && this.pageInfo.hasNext) {
+    if (this.pageInfo && this.pageInfo.hasNext && !this.isFetching) {
       this.nextPage();
     }
   }
