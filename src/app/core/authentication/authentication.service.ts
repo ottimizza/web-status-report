@@ -1,4 +1,3 @@
-
 import { Injectable, Inject } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -7,12 +6,12 @@ import { finalize } from 'rxjs/operators';
 import { StorageService } from '@app/services/storage.service';
 
 import { environment } from '@env';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
-
   static REFRESH_URL = '/auth/refresh';
 
   static STORAGE_KEY_USERINFO = 'user-info';
@@ -21,7 +20,13 @@ export class AuthenticationService {
 
   public redirectURI = `${window.location.origin}/auth/callback`;
 
-  constructor(@Inject(DOCUMENT) private document: Document, private http: HttpClient, public storageService: StorageService) { }
+  constructor(
+    @Inject(DOCUMENT)
+    private document: Document,
+    private http: HttpClient,
+    public storageService: StorageService,
+    public router: Router
+  ) {}
 
   public store(authSession: AuthSession): Promise<{}> {
     return new Promise<boolean>((resolve, reject) => {
@@ -51,38 +56,56 @@ export class AuthenticationService {
   public async storeUserInfo(): Promise<void> {
     const headers = this.getAuthorizationHeaders();
     return new Promise<void>((resolve, reject) => {
-      return this.http.get(`${environment.oauthBaseUrl}/oauth/userinfo`, { headers })
+      return this.http
+        .get(`${environment.oauthBaseUrl}/oauth/userinfo`, { headers })
         .pipe(
           finalize(() => {
             resolve();
           })
-        ).subscribe((response: any) => {
-          this.storageService.store(AuthenticationService.STORAGE_KEY_USERINFO, JSON.stringify(response.record));
+        )
+        .subscribe((response: any) => {
+          this.storageService.store(
+            AuthenticationService.STORAGE_KEY_USERINFO,
+            JSON.stringify(response.record)
+          );
         });
-    }).then(() => { });
+    }).then(() => {});
   }
 
   public async storeTokenInfo(): Promise<void> {
     const headers = this.getAuthorizationHeaders();
     return new Promise<void>((resolve, reject) => {
-      return this.http.get(`${environment.oauthBaseUrl}/oauth/tokeninfo`, { headers })
+      return this.http
+        .get(`${environment.oauthBaseUrl}/oauth/tokeninfo`, { headers })
         .pipe(
           finalize(() => {
             resolve();
           })
-        ).subscribe((response: any) => {
-          this.storageService.store(AuthenticationService.STORAGE_KEY_TOKENINFO, JSON.stringify(response));
-        });
-    }).then(() => { });
+        )
+        .subscribe(
+          (response: any) => {
+            this.storageService.store(
+              AuthenticationService.STORAGE_KEY_TOKENINFO,
+              JSON.stringify(response)
+            );
+          },
+          err => {
+            if (err.status === 403) {
+              alert(
+                'Seu usuário não possue acesso a esta aplicação. Se você acha que isso está errado, fale com seu administrador.'
+              );
+              this.router.navigate(['auth', 'logout']);
+            }
+          }
+        );
+    }).then(() => {});
   }
-
 
   public clearStorage() {
     localStorage.removeItem(AuthenticationService.STORAGE_KEY_USERINFO);
     localStorage.removeItem(AuthenticationService.STORAGE_KEY_TOKENINFO);
     localStorage.removeItem(AuthenticationService.STORAGE_KEY_AUTHSESSION);
   }
-
 
   public authorize(responseType: string = 'code'): void {
     const that = this;
@@ -142,5 +165,4 @@ export class AuthenticationService {
     }
     return state;
   }
-
 }
