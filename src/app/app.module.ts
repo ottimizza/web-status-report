@@ -1,4 +1,3 @@
-import { ErrorInterceptorProvider } from '@app/interceptor/http.interceptor';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { BrowserModule } from '@angular/platform-browser';
 import { environment } from '../environments/environment';
@@ -26,6 +25,7 @@ import { PipesModule } from '@shared/pipes/pipes.module';
 import { CommonModule } from '@angular/common';
 import { CoreModule } from '@app/core.module';
 import { FormsModule } from '@angular/forms';
+import { GlobalHttpInterceptorProvider } from '@app/interceptor/http/http-interceptor.provider';
 
 @NgModule({
   declarations: [
@@ -69,7 +69,7 @@ import { FormsModule } from '@angular/forms';
     MatSnackBarModule,
     MatDialogModule
   ],
-  providers: [ErrorInterceptorProvider],
+  providers: [GlobalHttpInterceptorProvider],
   bootstrap: [AppComponent],
   entryComponents: []
 })
