@@ -8,7 +8,6 @@ import { StorageService } from '@app/services/storage.service';
 
 @Injectable()
 export class AuthGuard implements CanActivate, CanActivateChild {
-
   private redirectTo: string;
 
   constructor(
@@ -16,7 +15,7 @@ export class AuthGuard implements CanActivate, CanActivateChild {
     private activatedRoute: ActivatedRoute,
     public storageService: StorageService,
     public authenticationService: AuthenticationService
-  ) { }
+  ) {}
 
   canActivate(): Promise<boolean> {
     const that = this;
@@ -28,7 +27,8 @@ export class AuthGuard implements CanActivate, CanActivateChild {
         if (result) {
           Promise.all([
             this.authenticationService.storeUserInfo(),
-            this.authenticationService.storeTokenInfo()
+            this.authenticationService.storeTokenInfo(),
+            this.authenticationService.verifyProduct()
           ]).then(() => {
             resolve(true);
           });
@@ -37,15 +37,18 @@ export class AuthGuard implements CanActivate, CanActivateChild {
           if (authSession.isEmpty()) {
             this.authorize();
           } else {
-            return this.authenticationService.refresh(authSession.getAuthenticated().refreshToken)
-              .pipe(
-                finalize(() => resolve(true))
-              ).subscribe((response: any) => {
+            return this.authenticationService
+              .refresh(authSession.getAuthenticated().refreshToken)
+              .pipe(finalize(() => resolve(true)))
+              .subscribe((response: any) => {
                 if (response.access_token) {
-                  AuthSession.fromOAuthResponse(response).store().then(async () => {
-                    this.authenticationService.storeUserInfo();
-                    this.authenticationService.storeTokenInfo();
-                  });
+                  AuthSession.fromOAuthResponse(response)
+                    .store()
+                    .then(async () => {
+                      this.authenticationService.storeUserInfo();
+                      this.authenticationService.storeTokenInfo();
+                      this.authenticationService.verifyProduct();
+                    });
                 } else if (response.error) {
                   this.authorize();
                 }
@@ -61,10 +64,8 @@ export class AuthGuard implements CanActivate, CanActivateChild {
   }
 
   public authorize() {
-    this.storageService.store(`redirect_url`, this.redirectTo)
-      .then((e) => {
-        this.authenticationService.authorize();
-      });
+    this.storageService.store(`redirect_url`, this.redirectTo).then(e => {
+      this.authenticationService.authorize();
+    });
   }
-
 }
