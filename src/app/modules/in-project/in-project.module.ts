@@ -4,13 +4,10 @@ import { InProjectListComponent } from './page/in-project-list/in-project-list.c
 import { InProjectCompanyComponent } from './page/in-project-company/in-project-company.component';
 import { BreadcrumbModule } from '@shared/components/breadcrumb/breadcrumb.module';
 import { ComplexSearchModule } from '@shared/components/search/complex-search.module';
-import {
-  MatChipsModule,
-  MatIconModule,
-  MatSnackBarModule,
-  MatAutocomplete,
-  MatAutocompleteModule
-} from '@angular/material';
+import { MatAutocomplete, MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatIconModule } from '@angular/material/icon';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { CommonModule } from '@angular/common';
 import { InProjectCardComponent } from './page/in-project-list/in-project-card/in-project-card.component';
 import { RouterModule } from '@angular/router';
