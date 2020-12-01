@@ -21,7 +21,8 @@ import { Router } from '@angular/router';
 export const HttpStatus = {
   BAD_REQUEST: 400,
   UNAUTHORIZED: 401,
-  FORBIDDEN: 403
+  FORBIDDEN: 403,
+  NOT_FOUND: 404
 };
 
 @Injectable()
@@ -53,7 +54,6 @@ export class GlobalHttpInterceptor implements HttpInterceptor {
           if (error.status === HttpStatus.UNAUTHORIZED) {
             if (this.requestMatchesCallbackURL(request)) {
               this.router.navigate(['/landpage']);
-              // this.logout();
               return throwError(error);
             }
 
