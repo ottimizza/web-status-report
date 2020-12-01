@@ -7,7 +7,7 @@ import { GenericResponse } from '@shared/models/GenericResponse';
 import { IntegracaoSalesForce } from '@shared/models/Integracao';
 import { HttpHandlerService } from '@app/services/http-handler.service';
 
-const BASE_URL = environment.storageBaseUrl;
+const BASE_URL = environment.serviceUrl;
 
 @Injectable({
   providedIn: 'root'

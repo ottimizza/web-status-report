@@ -30,6 +30,7 @@ export class SidebarLayoutComponent implements OnInit {
   ngOnInit() {
     this.currentUser = User.fromLocalStorage();
     this.items = [
+      { icon: 'fad fa-clipboard-list-check', label: 'Resumo', url: '' },
       { icon: 'fad fa-briefcase', label: 'Integrações', url: '/integracoes' },
       { icon: 'fad fa-tasks', label: 'Em Projeto', url: '/projetos' }
     ];

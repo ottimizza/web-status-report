@@ -5,8 +5,7 @@ import { AuthenticationService } from '@app/authentication/authentication.servic
 import { StorageService } from '@app/services/storage.service';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
-import { MessagingService } from '@app/services/messaging.service';
-import { environment } from '@env';
+import { SigninAsDialogComponent } from '@shared/components/dialogs/signin-as-dialog/signin-as-dialog.component';
 // import { OverlayContainer } from '@angular/cdk/overlay';
 
 // import { ThemeService } from '@app/service/theme.service';
@@ -18,7 +17,6 @@ import { environment } from '@env';
 })
 export class NavbarLayoutComponent implements OnInit {
   public DEFAULT_LOGO = 'https://ottimizza.com.br/wp-content/themes/ottimizza/images/logo.png';
-  APP_URL = `${environment.portalBaseUrl}`;
 
   currentUser: User;
 
@@ -29,8 +27,7 @@ export class NavbarLayoutComponent implements OnInit {
     public dialog: MatDialog,
     public router: Router,
     public storageService: StorageService,
-    public authorizationService: AuthenticationService,
-    public messagingService: MessagingService
+    public authorizationService: AuthenticationService
   ) {}
 
   public toggleSidebar() {
@@ -43,36 +40,46 @@ export class NavbarLayoutComponent implements OnInit {
     sidebar.focus();
   }
 
+  toggleSidebarStyle() {
+    const body = this.document.getElementsByTagName('body')[0];
+    if (body.classList.contains('compact-sidebar')) {
+      body.classList.remove('compact-sidebar');
+      body.classList.add('default-sidebar');
+    } else {
+      body.classList.add('compact-sidebar');
+      body.classList.remove('default-sidebar');
+    }
+  }
+
   public shouldShowAccountingDetailsPage() {
     return [User.Type.ADMINISTRATOR, User.Type.ACCOUNTANT].includes(this.currentUser.type);
   }
 
   public logout() {
     this.router.navigate(['auth', 'logout']);
-    // this.authorizationService.revokeToken().subscribe((r1: any) => {
-    //   this.authorizationService.clearStorage();
-    //   return this.authorizationService.logout().subscribe((r2: any) => {
-    //     this.authorizationService.authorize();
-    //   });
-    // });
   }
 
-  allowNotifications() {
-    this.messagingService.requestPermission();
+  public openSiginAsModal() {
+    this.dialog
+      .open(SigninAsDialogComponent, { width: '568px' })
+      .afterClosed()
+      .subscribe(result => {
+        if (result) {
+          window.location.reload();
+        }
+      });
   }
 
-  ngOnInit() {
-    this.storageService.onStorage(AuthenticationService.STORAGE_KEY_USERINFO, (result: any) => {
-      this.currentUser = User.fromLocalStorage();
-      if (this.currentUser.organization) {
-        const avatar = this.currentUser.organization.avatar;
-        this.logo = avatar ? avatar : this.DEFAULT_LOGO;
-      }
-    });
+  public refreshAvatar() {
     this.currentUser = User.fromLocalStorage();
     if (this.currentUser.organization) {
       const avatar = this.currentUser.organization.avatar;
-      this.logo = avatar ? avatar : this.DEFAULT_LOGO;
+      this.logo = avatar || this.DEFAULT_LOGO;
     }
+  }
+
+  ngOnInit() {
+    this.storageService.onStorage(AuthenticationService.STORAGE_KEY_USERINFO, this.refreshAvatar);
+    this.refreshAvatar();
   }
 }
