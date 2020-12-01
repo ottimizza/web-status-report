@@ -6,12 +6,21 @@ import { ContentLayoutComponent } from './layout/content-layout/content-layout.c
 
 import { NoAuthGuard } from '@app/guard/no-auth.guard';
 import { AuthGuard } from '@app/guard/auth.guard';
+import { LandPageComponent } from '@modules/land-page/page/land-page.component';
 
 const routes: Routes = [
   {
     path: '',
     redirectTo: 'content',
     pathMatch: 'full'
+  },
+  {
+    path: 'landpage',
+    data: {
+      breadcrumb: null
+    },
+    canActivate: [NoAuthGuard],
+    loadChildren: () => import('@modules/land-page/land-page.module').then(m => m.LandPageModule)
   },
   {
     path: 'content',
@@ -60,7 +69,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' })],
   exports: [RouterModule]
 })
 export class AppRoutingModule {}

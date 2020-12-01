@@ -6,42 +6,39 @@ import { Observable } from 'rxjs';
 import { GenericPageableResponse } from '@shared/models/GenericPageableResponse';
 import { IntegracaoSalesForce } from '@shared/models/Integracao';
 import { GenericResponse } from '@shared/models/GenericResponse';
+import { HttpHandlerService } from '@app/services/http-handler.service';
 
-const BASE_URL = environment.storageBaseUrl;
+const BASE_URL = environment.serviceUrl;
 
 @Injectable({
   providedIn: 'root'
 })
 export class InProjectService {
-  constructor(private http: HttpClient, private auth: AuthenticationService) {}
+  constructor(private http: HttpHandlerService) {}
 
   public getCompanys(
     searchCriteria: any
   ): Observable<GenericPageableResponse<IntegracaoSalesForce>> {
-    const url = `${BASE_URL}/api/empresa/projeto?${this._encode(searchCriteria)}`;
-    return this.http.get<GenericPageableResponse<IntegracaoSalesForce>>(url, this._headers);
+    const url = `${BASE_URL}/api/empresa/projeto`;
+    return this.http.get<GenericPageableResponse<IntegracaoSalesForce>>(
+      [url, searchCriteria],
+      'Falha ao obter empresas em projeto!'
+    );
   }
 
   public getById(id: number) {
     const url = `${BASE_URL}/api/empresa/projeto?pageSize=1&pageIndex=0&id=${id}`;
-    return this.http.get<GenericPageableResponse<IntegracaoSalesForce>>(url, this._headers);
+    return this.http.get<GenericPageableResponse<IntegracaoSalesForce>>(
+      url,
+      'Falha ao obter empresa em projeto!'
+    );
   }
 
   public getCount() {
     const url = `${BASE_URL}/api/empresa/projeto/quantidade`;
-    return this.http.get<GenericResponse<number>>(url, this._headers);
-  }
-
-  private _encode(params: any): string {
-    return Object.keys(params)
-      .map(key => {
-        return [key, params[key]].map(encodeURIComponent).join('=');
-      })
-      .join('&');
-  }
-
-  private get _headers() {
-    const headers = this.auth.getAuthorizationHeaders();
-    return { headers };
+    return this.http.get<GenericResponse<number>>(
+      url,
+      'Falha ao obter total de empresas em projeto'
+    );
   }
 }

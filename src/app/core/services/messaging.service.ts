@@ -8,7 +8,7 @@ export class MessagingService {
   currentMessage = new BehaviorSubject(null);
 
   constructor(public afm: AngularFireMessaging) {
-    this.afm.messaging.subscribe((_messaging: any) => {
+    this.afm.messages.subscribe((_messaging: any) => {
       _messaging._next = (payload: any) => LoggerUtils.log(payload);
       _messaging.onTokenRefresh = _messaging.onTokenRefresh.bind(_messaging);
     });

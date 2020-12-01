@@ -3,7 +3,7 @@ export const environment = {
   oauthBaseUrl: '',
   oauthClientId: '',
   imageCompressionBaseUrl: '',
-  storageBaseUrl: '',
+  serviceUrl: '',
   storageApplicationId: 'accounts-avatar',
   storageAccountingId: 'ottimizza',
   applicationId: 'ottimizza',
